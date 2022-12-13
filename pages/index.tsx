@@ -10,9 +10,6 @@ const Home: NextPage = () => {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 
-			<main className="flex min-h-screen flex-col items-center justify-center py-2">
-				<h1>SuperFlow Landing Page</h1>
-			</main>
 		</div>
 	);
 };
