@@ -1,11 +1,12 @@
 .header {
-	margin-top: 3em;
+	border-top: 10px solid black;
 }
 
 .container {
 	width: 90%;
 	max-width: 1350px;
 	margin: 0 auto;
+	margin-top: 1.5rem;
 }
 
 .container_flex {

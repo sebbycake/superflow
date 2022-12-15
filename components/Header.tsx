@@ -1,6 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import styles from "./Header.module.css"
+import {ConnectButton, RainbowKitProvider, darkTheme} from '@rainbow-me/rainbowkit';
 
 function Header() {
 	return (
@@ -31,7 +32,7 @@ function Header() {
 					<Link href="/" className={styles.nav_link}>
 						FAQ
 					</Link>
-					<button className={styles.button}>Connect</button>
+					<ConnectButton accountStatus="address" chainStatus="name" showBalance={false} />
 				</div>
 			</nav>
 		</header>
