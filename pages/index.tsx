@@ -1,6 +1,7 @@
 import type { NextPage } from "next"
 import Head from "next/head"
 import Image from "next/image"
+import Link from "next/link"
 import styles from "../styles/MainContent.module.css"
 import Layout from "../components/Layout"
 
@@ -22,7 +23,9 @@ const Home: NextPage = () => {
 							SuperFlow provides an effective and powerful way to create and
 							manage your subscriptions
 						</p>
-						<button className={styles.button}>Launch App</button>
+						<button className={styles.button}>
+							<Link href="/application">Launch App</Link>
+						</button>
 						<div className={styles.benefits}>
 							<div className={styles.benefit}>
 								<img src="/asset1.png" alt="" className={styles.benefit_img} />
