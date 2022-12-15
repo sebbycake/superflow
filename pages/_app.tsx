@@ -9,7 +9,8 @@ import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
 
 const { chains, provider } = configureChains(
-	[mainnet, polygon, optimism, arbitrum, goerli],
+	// we'll be using goerli for testing
+	[goerli, mainnet, polygon, optimism, arbitrum],
 	//api key to add to .env later. but adding here so everyone can use for now
 	[alchemyProvider({ apiKey: "9RscFf-M5Wz5EMfVOcX9Wnic6kAUMB6r" }), publicProvider()]
 );
@@ -35,9 +36,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 			fontStack: 'system',
 			overlayBlur: 'small',
 			})}>
-				<Layout>
-					<Component {...pageProps} />
-				</Layout>
+				<Component {...pageProps} />
 			</RainbowKitProvider>
 		</WagmiConfig>
 	)
