@@ -7,9 +7,11 @@ import styles from "../styles/Subscription.module.css"
 import { usePrepareContractWrite, useContractWrite, useAccount } from 'wagmi'
 import {ConnectButton} from '@rainbow-me/rainbowkit';
 import { abi } from "../utils/abi";
+import {isMounted} from "../hooks/isMounted"
 
 
 const Subscription: NextPage = () => {
+	const mounted = isMounted();
 	const [subscriptionName, setSubscriptionName] = useState("")
 	const [monthlyPrice, setMonthlyPrice] = useState("")
 	const [crypto, setCrypto] = useState("USDC")
@@ -51,7 +53,7 @@ const Subscription: NextPage = () => {
 	//   }
 	function connectWalletButton() {
 		return (
-		<ConnectButton accountStatus="address" chainStatus="name" showBalance={false} />
+			<ConnectButton accountStatus="address" chainStatus="name" showBalance={false} />
 		)
 	}
 
@@ -128,7 +130,7 @@ const Subscription: NextPage = () => {
 							/>
 						</label>
 						<div>
-							{isConnected ? deployContractButton() : connectWalletButton()}
+							{mounted ? isConnected ? deployContractButton() : connectWalletButton() : null}
 							{isLoading && <div>Check Wallet</div>}
       						{isSuccess && <div>Transaction: {JSON.stringify(data)}</div>}
 						</div>
