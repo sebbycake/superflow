@@ -1,0 +1,77 @@
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 5em;
+    margin-bottom: 5em;
+}
+
+.container_flex {
+    display: flex;
+    flex-direction: column;
+}
+
+.information {
+    width: 80%;
+}
+
+.main_title {
+    font-size: 2.2em;
+    font-weight: 700;
+    margin-bottom: .5em;
+}
+
+.main_description {
+    font-size: 1.2em;
+    font-weight: 500;
+    margin-bottom: 2em;
+}
+
+.main_image {
+    max-width: 100%;
+}
+
+.button {
+    background: #000;
+    color: #fff;
+    border-radius: 6px;
+    padding: .5em 1.5em;
+    margin-bottom: 3em;
+}
+
+.benefits {
+    display: flex;
+    flex-direction: column;
+}
+
+.benefit {
+    display: flex;
+    align-items: center;
+    margin-top: 2em;
+}
+
+.benefit_img {
+    max-width: 40%;
+}
+
+@media (min-width: 675px) {
+    .container_flex {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .main_title {
+        font-size: 3em;
+    }
+
+    .benefits {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .benefit {
+        margin-top: 0;
+        justify-content: space-between;
+    }
+
+}
