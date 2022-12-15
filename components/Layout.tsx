@@ -3,8 +3,8 @@ import Header from "./Header";
 import { Ubuntu } from '@next/font/google'
 
 const ubuntu = Ubuntu({
-    weight: ['400', '500', '700'],
-  subsets: ['latin'],
+	weight: ['400', '500', '700'],
+  	subsets: ['latin'],
 })
 
 function Layout({ children }) {
