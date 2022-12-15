@@ -19,10 +19,10 @@ const Subscription: NextPage = () => {
 	const [isRecurring, setIsRecurring] = useState(false)
 	const { address, isConnected } = useAccount()
 	const { config } = usePrepareContractWrite({
-		address: '0x0C1A64E1b7c2F2eb7e816C0a55A0e0CbD3155f82',
+		address: '0x7432D6d775AbC6ECb0b99F3F9Bf589d5c6EB91AE',
 		abi: abi,
 		functionName: 'createSubscription',
-		args: [[10,20], "hello", "0x0C1A64E1b7c2F2eb7e816C0a55A0e0CbD3155f82", true, true]
+		args: [[10,20], "hello", "0xcb3c44718789f3eA8E3E8195dBd0a8e88Dd53469", true, true, true, true, true]
 	})
 	const { data, isLoading, isSuccess, write } = useContractWrite(config)
 
