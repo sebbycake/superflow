@@ -1,0 +1,30 @@
+.container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.subscription_name,
+.monthly_price,
+.crypto,
+.streaming_payment,
+.recurring_payment {
+  display: block;
+  border: none;
+  padding: 1em 2em;
+  border-radius: 6px;
+  margin-bottom: 2em;
+  background-color: #e0e0e0;
+  outline: none;
+}
+
+.submit_btn {
+  display: block;
+  cursor: pointer;
+  background-color: black;
+  color: #fff;
+  padding: 1em 1.5em;
+  border-radius: 6px;
+  width: 100%;
+}
