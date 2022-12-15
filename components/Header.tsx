@@ -16,11 +16,11 @@ function Header() {
 					</div>
 				</div>
 				<div className={styles.nav_links}>
-					<a href="#" className={styles.nav_link}>Home</a>
-					<a href="#" className={styles.nav_link}>About</a>
-					<a href="#" className={styles.nav_link}>Blog</a>
-					<a href="#" className={styles.nav_link}>Developers</a>
-					<a href="#" className={styles.nav_link}>FAQ</a>
+					<Link href="/" className={styles.nav_link}>Home</Link>
+					<Link href="/about" className={styles.nav_link}>About</Link>
+					<Link href="/" className={styles.nav_link}>Blog</Link>
+					<Link href="/" className={styles.nav_link}>Developers</Link>
+					<Link href="/" className={styles.nav_link}>FAQ</Link>
                     <button className={styles.button}>Connect</button>
 				</div>
 			</nav>
