@@ -1,20 +1,19 @@
-import React from "react";
-import Header from "./Header";
-import { Ubuntu } from '@next/font/google'
+import React from "react"
+import Header from "./Header"
+import { Ubuntu } from "@next/font/google"
 
 const ubuntu = Ubuntu({
-	weight: ['400', '500', '700'],
-  	subsets: ['latin'],
+	weight: ["400", "500", "700"],
+	subsets: ["latin"],
 })
 
 function Layout({ children }) {
 	return (
 		<div className={ubuntu.className}>
 			<Header />
-			{ children }
+			{children}
 		</div>
-	);
+	)
 }
 
-export default Layout;
-
+export default Layout

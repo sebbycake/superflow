@@ -1,6 +1,6 @@
-import Link from "next/link";
-import Image from "next/image";
-import styles from "./Header.module.css";
+import Link from "next/link"
+import Image from "next/image"
+import styles from "./Header.module.css"
 
 function Header() {
 	return (
@@ -16,16 +16,26 @@ function Header() {
 					</div>
 				</div>
 				<div className={styles.nav_links}>
-					<Link href="/" className={styles.nav_link}>Home</Link>
-					<Link href="/" className={styles.nav_link}>About</Link>
-					<Link href="/" className={styles.nav_link}>Blog</Link>
-					<Link href="/" className={styles.nav_link}>Developers</Link>
-					<Link href="/" className={styles.nav_link}>FAQ</Link>
-                    <button className={styles.button}>Connect</button>
+					<Link href="/" className={styles.nav_link}>
+						Home
+					</Link>
+					<Link href="/" className={styles.nav_link}>
+						About
+					</Link>
+					<Link href="/" className={styles.nav_link}>
+						Blog
+					</Link>
+					<Link href="/" className={styles.nav_link}>
+						Developers
+					</Link>
+					<Link href="/" className={styles.nav_link}>
+						FAQ
+					</Link>
+					<button className={styles.button}>Connect</button>
 				</div>
 			</nav>
 		</header>
-	);
+	)
 }
 
-export default Header;
+export default Header

@@ -1,90 +1,89 @@
 .header {
-    margin-top: 3em;
+	margin-top: 3em;
 }
 
 .container {
-    width: 90%;
-    max-width: 1350px;
-    margin: 0 auto;
+	width: 90%;
+	max-width: 1350px;
+	margin: 0 auto;
 }
 
 .container_flex {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .logo {
-    width: 45%;
-    display: flex;
-    align-items: center;
-    /* background-color: blue; */
+	width: 45%;
+	display: flex;
+	align-items: center;
+	/* background-color: blue; */
 }
 
 .logo_img {
-    min-width: 50px;
-    max-width: 11%;
+	min-width: 50px;
+	max-width: 11%;
 }
 
 .logo_title {
-    font-size: 1.3em;
-    font-weight: 700;
+	font-size: 1.3em;
+	font-weight: 700;
 }
 
 .logo_description {
-    font-size: 1em;
-    font-weight: 500;
+	font-size: 1em;
+	font-weight: 500;
 }
 
 .nav_links {
-    width: 55%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+	width: 55%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .nav_link {
-    font-weight: 500;
-    box-sizing: border-box;
+	font-weight: 500;
+	box-sizing: border-box;
 }
 
 .nav_link:hover,
 .nav_link:focus {
-    margin-top: 2px;
-    border-bottom: 2px solid #000;
+	margin-top: 2px;
+	border-bottom: 2px solid #000;
 }
 
 .button {
-    background: #000;
-    color: #fff;
-    border-radius: 6px;
-    padding: .5em 1.5em;
-    margin-left: 2.5em;
+	background: #000;
+	color: #fff;
+	border-radius: 6px;
+	padding: 0.5em 1.5em;
+	margin-left: 2.5em;
 }
 
 @media (max-width: 675px) {
+	.header {
+		font-size: 14px;
+	}
 
-    .header {
-        font-size: 14px;
-    }
+	.container_flex {
+		flex-direction: column;
+	}
 
-    .container_flex {
-        flex-direction: column;
-    }
+	.logo {
+		margin-bottom: 2em;
+	}
 
-    .logo {
-        margin-bottom: 2em;
-    }
+	.nav_links {
+		flex-direction: column;
+	}
 
-    .nav_links {
-        flex-direction: column;
-    }
+	.nav_link {
+		margin-bottom: 1em;
+	}
 
-    .nav_link {
-        margin-bottom: 1em;
-    }
-
-    .button {
-        margin-left: 0;
-    }
+	.button {
+		margin-left: 0;
+	}
 }
