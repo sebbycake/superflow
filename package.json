@@ -8,12 +8,14 @@
 	},
 	"dependencies": {
 		"@next/font": "^13.0.6",
-		"@rainbow-me/rainbowkit": "^0.8.0",
+		"@rainbow-me/rainbowkit": "^0.8.1",
+		"@wagmi/chains": "^0.1.2",
+		"alchemy-sdk": "^2.2.4",
 		"ethers": "^5.7.2",
 		"next": "latest",
 		"react": "18.2.0",
 		"react-dom": "18.2.0",
-		"wagmi": "^0.9.2"
+		"wagmi": "^0.9.3"
 	},
 	"devDependencies": {
 		"@types/node": "18.11.3",
