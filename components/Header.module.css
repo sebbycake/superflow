@@ -1,9 +1,9 @@
 .header {
-    margin-top: 1.5em;
+    margin-top: 3em;
 }
 
 .container {
-    width: 80%;
+    width: 90%;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -65,7 +65,7 @@
 @media (max-width: 675px) {
 
     .header {
-        font-size: 11px;
+        font-size: 14px;
     }
 
     .container_flex {
