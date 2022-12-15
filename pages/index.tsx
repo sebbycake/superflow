@@ -24,7 +24,7 @@ const Home: NextPage = () => {
 							manage your subscriptions
 						</p>
 						<button className={styles.button}>
-							<Link href="/application">Launch App</Link>
+							<Link href="/dashboard">Launch App</Link>
 						</button>
 						<div className={styles.benefits}>
 							<div className={styles.benefit}>

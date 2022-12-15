@@ -1,0 +1,69 @@
+.container_flex {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar_menu {
+  width: 18%;
+  max-width: 350px;
+}
+
+.sidebar {
+  position: fixed;
+  width: inherit;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-right: 2px solid #e0e0e0;
+}
+
+.application {
+  width: 80%;
+  background-color: beige;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  margin-top: 1em;
+  margin-bottom: 2em;
+	display: flex;
+	align-items: center;
+}
+
+.logo_img {
+	min-width: 50px;
+	max-width: 20%;
+}
+
+.logo_title {
+	font-size: 1.3em;
+	font-weight: 700;
+}
+
+.wallet {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2em;
+}
+
+.nav_item {
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 1.2em;
+  padding: 0.8em 1.5em;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.nav_active {
+  background-color: #F0F0F0;
+  font-weight: 500;
+}
+
+@media (min-width:675px) {
+  .container_flex {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
