@@ -17,8 +17,8 @@ const Subscription: NextPage = () => {
 	const [isUSDCAccepted, setUSDC] = useState(false)
 	const [isDAIAccepted, setDAI] = useState(false)
 	const [isUSDTAccepted, setUSDT] = useState(false)
-	const [isStreamingPayment, setIsStreamingPayment] = useState(false)
 	const [isRecurring, setIsRecurring] = useState(false)
+	const [isStreamingPayment, setIsStreamingPayment] = useState(false)
 	const { address, isConnected } = useAccount()
 	const { config } = usePrepareContractWrite({
 		address: "0x7432D6d775AbC6ECb0b99F3F9Bf589d5c6EB91AE",
@@ -45,31 +45,9 @@ const Subscription: NextPage = () => {
 		return monthlyPrice.split(",").map(Number)
 	}
 
-	function connectWalletButton() {
-		return (
-			<ConnectButton
-				accountStatus="address"
-				chainStatus="name"
-				showBalance={false}
-			/>
-		)
-	}
-
-	function deployContractButton() {
-		return (
-			subscriptionName == "" || monthlyPrice == "" || ownerAddress == ""
-			? <button className={styles.submit_btn}>
-				Deploy subscription!
-			</button> 
-			: <button
-				className={styles.submit_btn}
-				// below works also but doesn't produce the "fill this up" tag
-				//disabled={!write || subscriptionName == "" || monthlyPrice ==""}
-				onClick={() => write?.()}
-			>
-				Deploy subscription!
-			</button>
-		)
+	function handleSubmit(event) {
+		event.preventDefault()
+		write?.()
 	}
 
 	// TODO: handle inputs validation (e.g. check empty fields) when time permits
@@ -83,7 +61,7 @@ const Subscription: NextPage = () => {
 
 			<ApplicationLayout isActive={[0, 1]}>
 				<main className={styles.container}>
-					<form className={styles.form}>
+					<form className={styles.form} onSubmit={handleSubmit}>
 						<label>
 							Subscription Name:
 							<input
@@ -96,7 +74,7 @@ const Subscription: NextPage = () => {
 							/>
 						</label>
 						<label>
-							Monthly Price(s): <br/>
+							Monthly Price(s): <br />
 							<small>Separate by "," for multiple prices</small>
 							<input
 								type="text"
@@ -170,11 +148,21 @@ const Subscription: NextPage = () => {
 							/>
 						</label>
 						<div>
-							{mounted
-								? isConnected
-									? deployContractButton()
-									: connectWalletButton()
-								: null}
+							{mounted ? (
+								isConnected ? (
+									<input
+										type="submit"
+										value="Deploy subscription!"
+										className={styles.submit_btn}
+									/>
+								) : (
+									<ConnectButton
+										accountStatus="address"
+										chainStatus="name"
+										showBalance={false}
+									/>
+								)
+							) : null}
 							{isLoading && <div>Check Wallet</div>}
 							{isSuccess && <div>Transaction: {JSON.stringify(data)}</div>}
 						</div>
