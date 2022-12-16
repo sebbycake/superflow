@@ -47,6 +47,7 @@
 }
 
 .nav_item {
+  display: block;
   width: 80%;
   margin: 0 auto;
   margin-bottom: 1.2em;

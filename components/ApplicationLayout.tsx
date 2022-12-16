@@ -22,12 +22,8 @@ function ApplicationLayout({isActive, children }) {
 							<ConnectButton accountStatus="address" chainStatus="name" showBalance={false} />
 						</div>
 						<div className="nav_items">
-							<div className={`${styles.nav_item} ${isActive[0] && styles.nav_active}`}>
-								<Link href="/dashboard">Dashboard</Link>
-							</div>
-							<div className={`${styles.nav_item} ${isActive[1] && styles.nav_active}`}>
-								<Link href="/subscription">Create Subscription</Link>
-							</div>
+								<Link href="/dashboard" className={`${styles.nav_item} ${isActive[0] && styles.nav_active}`}>Dashboard</Link>
+								<Link href="/subscription" className={`${styles.nav_item} ${isActive[1] && styles.nav_active}`}>Create Subscription</Link>
 						</div>
 					</div>
 				</section>
