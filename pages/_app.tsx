@@ -1,5 +1,6 @@
 import "../styles/globals.css"
 import type { AppProps } from "next/app"
+import { Ubuntu } from "@next/font/google"
 import Layout from "../components/Layout"
 import "@rainbow-me/rainbowkit/styles.css";
 import { getDefaultWallets, RainbowKitProvider, darkTheme } from "@rainbow-me/rainbowkit";
@@ -7,6 +8,11 @@ import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { mainnet, polygon, optimism, arbitrum, goerli } from 'wagmi/chains';
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
+
+const ubuntu = Ubuntu({
+	weight: ["400", "500", "700"],
+	subsets: ["latin"],
+})
 
 const { chains, provider } = configureChains(
 	// we'll be using goerli for testing
@@ -28,17 +34,19 @@ const wagmiClient = createClient({
   
 function MyApp({ Component, pageProps }: AppProps) {
 	return (
-		<WagmiConfig client={wagmiClient}>
-			<RainbowKitProvider chains={chains} theme={darkTheme({
-			accentColor: 'black',
-			accentColorForeground: 'white',
-			borderRadius: 'medium',
-			fontStack: 'system',
-			overlayBlur: 'small',
-			})}>
-				<Component {...pageProps} />
-			</RainbowKitProvider>
-		</WagmiConfig>
+		<div className={ubuntu.className}>
+			<WagmiConfig client={wagmiClient}>
+				<RainbowKitProvider chains={chains} theme={darkTheme({
+				accentColor: 'black',
+				accentColorForeground: 'white',
+				borderRadius: 'medium',
+				fontStack: 'system',
+				overlayBlur: 'small',
+				})}>
+					<Component {...pageProps} />
+				</RainbowKitProvider>
+			</WagmiConfig>
+		</div>
 	)
 }
 
