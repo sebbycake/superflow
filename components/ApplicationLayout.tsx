@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import type { NextPage } from "next"
-import Head from "next/head"
 import Link from "next/link"
 import styles from "./ApplicationLayout.module.css"
-import {ConnectButton, RainbowKitProvider, darkTheme} from '@rainbow-me/rainbowkit';
+import {ConnectButton} from '@rainbow-me/rainbowkit';
 
 function ApplicationLayout({isActive, children }) {
 

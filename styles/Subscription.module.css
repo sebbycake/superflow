@@ -11,8 +11,7 @@
   box-shadow: rgb(204 204 204 / 25%) 0px 0px 6px 3px;
 }
 
-.subscription_name,
-.monthly_price {
+.text_input {
   display: block;
   width: 100%;
   border: none;

@@ -24,10 +24,9 @@
 .logo {
   display: flex;
   justify-content: center;
+	align-items: center;
   margin-top: 1em;
   margin-bottom: 2em;
-	display: flex;
-	align-items: center;
 }
 
 .logo_img {

@@ -41,7 +41,7 @@ const Subscription: NextPage = () => {
 		setData(event.target.value)
 	}
 
-	function convertPricesToArray(event) {
+	function convertPricesToArray() {
 		return monthlyPrice.split(",").map(Number)
 	}
 
@@ -91,7 +91,7 @@ const Subscription: NextPage = () => {
 								placeholder="e.g. SuperFlow subscription"
 								value={subscriptionName}
 								onChange={() => handleChange(event, setSubscriptionName)}
-								className={styles.subscription_name}
+								className={styles.text_input}
 								required
 							/>
 						</label>
@@ -103,18 +103,18 @@ const Subscription: NextPage = () => {
 								placeholder="e.g. 7, 10, 15"
 								value={monthlyPrice}
 								onChange={() => handleChange(event, setMonthlyPrice)}
-								className={styles.subscription_name}
+								className={styles.text_input}
 								required
 							/>
 						</label>
 						<label>
-							Owner: <br/>
+							Owner:
 							<input
 								type="text"
 								placeholder="e.g. 0x7432D6d775AbC6ECb0b99F3F9Bf589d5c6EB91AE"
 								value={ownerAddress}
 								onChange={() => handleChange(event, setOwner)}
-								className={styles.subscription_name}
+								className={styles.text_input}
 								required
 							/>
 						</label>
