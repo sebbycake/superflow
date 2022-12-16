@@ -26,11 +26,6 @@ const { connectors } = getDefaultWallets({
 	chains
 });
 
-const { wallets } = getDefaultWallets({
-	appName: 'superflow',
-	chains,
-  });
-
 const wagmiClient = createClient({
 	autoConnect: true,
 	connectors,
