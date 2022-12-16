@@ -4,10 +4,11 @@ import Head from "next/head"
 import Link from "next/link"
 import ApplicationLayout from "../components/ApplicationLayout"
 import styles from "../styles/Subscription.module.css"
-import { usePrepareContractWrite, useContractWrite, useAccount } from "wagmi"
+import { usePrepareContractWrite, useContractWrite, useAccount, useWaitForTransaction} from "wagmi"
 import { ConnectButton } from "@rainbow-me/rainbowkit"
 import { abi } from "../utils/abi"
 import { isMounted } from "../hooks/isMounted"
+import FlipCard, { BackCard, FrontCard } from '../components/FlipCard';
 
 const Subscription: NextPage = () => {
 	const mounted = isMounted()
@@ -35,7 +36,15 @@ const Subscription: NextPage = () => {
 			isStreamingPayment,
 		],
 	})
-	const { data, isLoading, isSuccess, write } = useContractWrite(config)
+	const { data, isLoading, isSuccess, error, write } = useContractWrite(config)
+
+	const {
+		data: txData,
+		isSuccess: txSuccess,
+		error: txError,
+	  } = useWaitForTransaction({
+		hash: data?.hash,
+	  });
 
 	function handleChange(event, setData) {
 		setData(event.target.value)
@@ -60,115 +69,129 @@ const Subscription: NextPage = () => {
 			</Head>
 
 			<ApplicationLayout isActive={[0, 1]}>
-				<main className={styles.container}>
-					<form className={styles.form} onSubmit={handleSubmit}>
-						<label>
-							Subscription Name:
-							<input
-								type="text"
-								placeholder="e.g. SuperFlow subscription"
-								value={subscriptionName}
-								onChange={() => handleChange(event, setSubscriptionName)}
-								className={styles.text_input}
-								required
-							/>
-						</label>
-						<label>
-							Monthly Price(s): <br />
-							<small>Separate by "," for multiple prices</small>
-							<input
-								type="text"
-								placeholder="e.g. 7, 10, 15"
-								value={monthlyPrice}
-								onChange={() => handleChange(event, setMonthlyPrice)}
-								className={styles.text_input}
-								required
-							/>
-						</label>
-						<label>
-							Owner:
-							<input
-								type="text"
-								placeholder="e.g. 0x7432D6d775AbC6ECb0b99F3F9Bf589d5c6EB91AE"
-								value={ownerAddress}
-								onChange={() => handleChange(event, setOwner)}
-								className={styles.text_input}
-								required
-							/>
-						</label>
-						Accepted Stablecoin:
-						<label className={styles.payment_method_label}>
-							USDc
-							<input
-								type="checkbox"
-								name="usdc"
-								value="true"
-								onChange={() => handleChange(event, setUSDC)}
-								className={styles.checkbox}
-							/>
-						</label>
-						<label className={styles.payment_method_label}>
-							DAI
-							<input
-								type="checkbox"
-								name="dai"
-								value="true"
-								onChange={() => handleChange(event, setDAI)}
-								className={styles.checkbox}
-							/>
-						</label>
-						<label className={styles.payment_method_label}>
-							UDSt
-							<input
-								type="checkbox"
-								name="usdt"
-								value="true"
-								onChange={() => handleChange(event, setUSDT)}
-								className={styles.checkbox}
-							/>
-						</label>
-						<label className={styles.recurring_payment_label}>
-							Recurring payment:
-							<input
-								type="checkbox"
-								name="recurring"
-								value="true"
-								onChange={() => handleChange(event, setIsRecurring)}
-								className={styles.checkbox}
-							/>
-						</label>
-						<label className={styles.streaming_payment_label}>
-							Streaming as a form of payment:
-							<input
-								type="checkbox"
-								name="streaming"
-								value="true"
-								onChange={() => handleChange(event, setIsStreamingPayment)}
-								className={styles.checkbox}
-							/>
-						</label>
-						<div>
-							{mounted ? (
-								isConnected ? (
-									<input
-										type="submit"
-										value="Deploy subscription!"
-										className={styles.submit_btn}
-									/>
-								) : (
-									<ConnectButton
-										accountStatus="address"
-										chainStatus="name"
-										showBalance={false}
-									/>
-								)
-							) : null}
-							{isLoading && <div>Check Wallet</div>}
-							{isSuccess && <div>Transaction: {JSON.stringify(data)}</div>}
-						</div>
-					</form>
-				</main>
+				<FlipCard>
+				<FrontCard isCardFlipped={txSuccess}>
+					<main className={styles.container}>
+						<form className={styles.form} onSubmit={handleSubmit}>
+							<label>
+								Subscription Name:
+								<input
+									type="text"
+									placeholder="e.g. SuperFlow subscription"
+									value={subscriptionName}
+									onChange={() => handleChange(event, setSubscriptionName)}
+									className={styles.text_input}
+									required
+								/>
+							</label>
+							<label>
+								Monthly Price(s): <br />
+								<small>Separate by "," for multiple prices</small>
+								<input
+									type="text"
+									placeholder="e.g. 7, 10, 15"
+									value={monthlyPrice}
+									onChange={() => handleChange(event, setMonthlyPrice)}
+									className={styles.text_input}
+									required
+								/>
+							</label>
+							<label>
+								Owner:
+								<input
+									type="text"
+									placeholder="e.g. 0x7432D6d775AbC6ECb0b99F3F9Bf589d5c6EB91AE"
+									value={ownerAddress}
+									onChange={() => handleChange(event, setOwner)}
+									className={styles.text_input}
+									required
+								/>
+							</label>
+							Accepted Stablecoin:
+							<label className={styles.payment_method_label}>
+								USDc
+								<input
+									type="checkbox"
+									name="usdc"
+									value="true"
+									onChange={() => handleChange(event, setUSDC)}
+									className={styles.checkbox}
+								/>
+							</label>
+							<label className={styles.payment_method_label}>
+								DAI
+								<input
+									type="checkbox"
+									name="dai"
+									value="true"
+									onChange={() => handleChange(event, setDAI)}
+									className={styles.checkbox}
+								/>
+							</label>
+							<label className={styles.payment_method_label}>
+								UDSt
+								<input
+									type="checkbox"
+									name="usdt"
+									value="true"
+									onChange={() => handleChange(event, setUSDT)}
+									className={styles.checkbox}
+								/>
+							</label>
+							<label className={styles.recurring_payment_label}>
+								Recurring payment:
+								<input
+									type="checkbox"
+									name="recurring"
+									value="true"
+									onChange={() => handleChange(event, setIsRecurring)}
+									className={styles.checkbox}
+								/>
+							</label>
+							<label className={styles.streaming_payment_label}>
+								Streaming as a form of payment:
+								<input
+									type="checkbox"
+									name="streaming"
+									value="true"
+									onChange={() => handleChange(event, setIsStreamingPayment)}
+									className={styles.checkbox}
+								/>
+							</label>
+							<div>
+								{mounted ? (
+									isConnected ? (
+										<button className={styles.submit_btn} disabled={isLoading || isSuccess} 
+												data-mint-loading={isLoading} data-mint-started={isSuccess}>
+											{isLoading && "Waiting for approval"}
+											{isSuccess && "Deploying..."}
+											{!isLoading && !isSuccess && "Deploy subscription!"}
+										</button>
+									) : (
+										<ConnectButton/>
+									)
+								) : null}
+							</div>
+						</form>
+					</main>
+				</FrontCard>
+				
+				<BackCard isCardFlipped={txSuccess}>
+					<div style={{ padding: 24 }}>
+						<h1 style={{ marginTop: 24, marginBottom: 6 }}>Contract Deployed!</h1>
+						<p style={{ marginTop: 10 }}>
+							View{' '}
+							<a href={`https://goerli.etherscan.io/tx/${data?.hash}`} target ="_blank">
+								<u>
+									Transaction Hash
+								</u>
+							</a>
+						</p>
+					</div>
+				</BackCard>
+				</FlipCard>
 			</ApplicationLayout>
+
 		</div>
 	)
 }

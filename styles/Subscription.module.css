@@ -46,6 +46,53 @@
   background-color: black;
   color: #fff;
   padding: 1em 1.5em;
-  border-radius: 6px;
+  border-radius: 8px;
   width: 100%;
+  transition: all ease 100ms;
+
+}
+
+
+.submit_btn:not(:disabled):hover {
+  transform: scale(1.012)
+}
+
+
+.submit_btn[data-mint-loading="true"] {
+  background: rgba(22, 25, 31, 0.24);
+}
+
+.submit_btn[data-mint-started="true"] {
+  background-image: linear-gradient(270deg, black, black);
+  position: relative;
+}
+
+.submit_btn[data-mint-started="true"]::after {
+  animation-name: pulse;
+  animation-duration: 600ms;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  background-color: black;
+  border-radius: inherit;
+  bottom: 0;
+  content: ' ';
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+
+.submit_btn[data-mint-done="true"] {
+   opacity: 0;
+   transform: scale(0.85);
+}
+
+.backcard {
+  margin: 0 auto;
+}
+@keyframes pulse {
+  0% { opacity: 0 }
+  100% { opacity: '100%' }
 }
