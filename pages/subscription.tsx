@@ -24,7 +24,7 @@ const Subscription: NextPage = () => {
 		abi: abi,
 		functionName: "createSubscription",
 		args: [
-			[monthlyPrice],
+			convertPricesToArray(),
 			subscriptionName,
 			address,
 			isUSDCAccepted,
@@ -40,11 +40,10 @@ const Subscription: NextPage = () => {
 		setData(event.target.value)
 	}
 
-	// const connectWalletButton = () => {
-	// 	return (
-	// 	<ConnectButton accountStatus="address" chainStatus="name" showBalance={false} />
-	// 	)
-	//   }
+	function convertPricesToArray(event) {
+		return monthlyPrice.split(",").map(Number)
+	}
+
 	function connectWalletButton() {
 		return (
 			<ConnectButton
@@ -90,9 +89,10 @@ const Subscription: NextPage = () => {
 							/>
 						</label>
 						<label>
-							Monthly Price: <br/>
+							Monthly Price(s): <br/>
+							<small>Separate by "," for multiple prices. E.g. 10,14,16</small>
 							<input
-								type="number"
+								type="text"
 								value={monthlyPrice}
 								onChange={() => handleChange(event, setMonthlyPrice)}
 								className={styles.subscription_name}
