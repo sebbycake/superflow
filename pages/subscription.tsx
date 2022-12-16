@@ -13,7 +13,9 @@ const Subscription: NextPage = () => {
 	const mounted = isMounted()
 	const [subscriptionName, setSubscriptionName] = useState("")
 	const [monthlyPrice, setMonthlyPrice] = useState("")
-	const [crypto, setCrypto] = useState("USDC")
+	const [isUSDCAccepted, setUSDC] = useState(false)
+	const [isDAIAccepted, setDAI] = useState(false)
+	const [isUSDTAccepted, setUSDT] = useState(false)
 	const [isStreamingPayment, setIsStreamingPayment] = useState(false)
 	const [isRecurring, setIsRecurring] = useState(false)
 	const { address, isConnected } = useAccount()
@@ -22,14 +24,14 @@ const Subscription: NextPage = () => {
 		abi: abi,
 		functionName: "createSubscription",
 		args: [
-			[10, 20],
-			"hello",
-			"0xcb3c44718789f3eA8E3E8195dBd0a8e88Dd53469",
-			true,
-			true,
-			true,
-			true,
-			true,
+			[monthlyPrice],
+			subscriptionName,
+			address,
+			isUSDCAccepted,
+			isDAIAccepted,
+			isUSDTAccepted,
+			isStreamingPayment,
+			isRecurring,
 		],
 	})
 	const { data, isLoading, isSuccess, write } = useContractWrite(config)
@@ -87,9 +89,8 @@ const Subscription: NextPage = () => {
 								required
 							/>
 						</label>
-
 						<label>
-							Monthly Price:
+							Monthly Price: <br/>
 							<input
 								type="number"
 								value={monthlyPrice}
@@ -98,22 +99,38 @@ const Subscription: NextPage = () => {
 								required
 							/>
 						</label>
-
-						<label>
-							Accepted Stablecoin:
-							<select
-								name="crypto"
-								className={styles.crypto}
-								onChange={() => handleChange(event, setCrypto)}
-								required
-							>
-								<option value="usdc">USDC</option>
-								<option value="dai">DAI</option>
-								<option value="usdt">USDT</option>
-							</select>
+						Accepted Stablecoin:
+						<label className={styles.payment_method}>
+							USDC
+							<input
+								type="checkbox"
+								name="usdc"
+								value="true"
+								onChange={() => handleChange(event, setUSDC)}
+								className={styles.payment_method_checkbox}
+							/>
 						</label>
-
-						<label>
+						<label className={styles.payment_method}>
+							DAI
+							<input
+								type="checkbox"
+								name="dai"
+								value="true"
+								onChange={() => handleChange(event, setDAI)}
+								className={styles.payment_method_checkbox}
+							/>
+						</label>
+						<label className={styles.payment_method}>
+							UDST
+							<input
+								type="checkbox"
+								name="usdt"
+								value="true"
+								onChange={() => handleChange(event, setUSDT)}
+								className={styles.payment_method_checkbox}
+							/>
+						</label>
+						<label className={styles.streaming_payment_label}>
 							Streaming as a form of payment:
 							<input
 								type="checkbox"
@@ -123,7 +140,6 @@ const Subscription: NextPage = () => {
 								className={styles.streaming_payment}
 							/>
 						</label>
-
 						<label>
 							Recurring payment:
 							<input
@@ -135,11 +151,14 @@ const Subscription: NextPage = () => {
 							/>
 						</label>
 						<div>
-							{mounted ? isConnected ? deployContractButton() : connectWalletButton() : null}
+							{mounted
+								? isConnected
+									? deployContractButton()
+									: connectWalletButton()
+								: null}
 							{isLoading && <div>Check Wallet</div>}
-      						{isSuccess && <div>Transaction: {JSON.stringify(data)}</div>}
+							{isSuccess && <div>Transaction: {JSON.stringify(data)}</div>}
 						</div>
-
 					</form>
 				</main>
 			</ApplicationLayout>
