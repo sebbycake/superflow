@@ -31,8 +31,8 @@ const Subscription: NextPage = () => {
 			isUSDCAccepted,
 			isDAIAccepted,
 			isUSDTAccepted,
-			isStreamingPayment,
 			isRecurring,
+			isStreamingPayment,
 		],
 	})
 	const { data, isLoading, isSuccess, write } = useContractWrite(config)
@@ -149,16 +149,6 @@ const Subscription: NextPage = () => {
 								className={styles.checkbox}
 							/>
 						</label>
-						<label className={styles.streaming_payment_label}>
-							Streaming as a form of payment:
-							<input
-								type="checkbox"
-								name="streaming"
-								value="true"
-								onChange={() => handleChange(event, setIsStreamingPayment)}
-								className={styles.checkbox}
-							/>
-						</label>
 						<label className={styles.recurring_payment_label}>
 							Recurring payment:
 							<input
@@ -166,6 +156,16 @@ const Subscription: NextPage = () => {
 								name="recurring"
 								value="true"
 								onChange={() => handleChange(event, setIsRecurring)}
+								className={styles.checkbox}
+							/>
+						</label>
+						<label className={styles.streaming_payment_label}>
+							Streaming as a form of payment:
+							<input
+								type="checkbox"
+								name="streaming"
+								value="true"
+								onChange={() => handleChange(event, setIsStreamingPayment)}
 								className={styles.checkbox}
 							/>
 						</label>

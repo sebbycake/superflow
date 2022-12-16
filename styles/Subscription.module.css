@@ -26,12 +26,12 @@
   margin-left: 1em;
 }
 
-.streaming_payment_label {
+.recurring_payment_label {
   margin-top: 2em;
 }
 
-.streaming_payment_label,
-.recurring_payment_label {
+.recurring_payment_label,
+.streaming_payment_label {
   display: block;
   margin-bottom: 2em;
 }
