@@ -32,7 +32,7 @@ function Header() {
 					<Link href="/" className={styles.nav_link}>
 						FAQ
 					</Link>
-       			 	<ConnectButton accountStatus="address" chainStatus="name" showBalance={false} />
+       			 	<ConnectButton accountStatus="address" chainStatus="none" showBalance={false} />
 				</div>
 			</nav>
 		</header>

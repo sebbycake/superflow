@@ -13,6 +13,7 @@ const Subscription: NextPage = () => {
 	const mounted = isMounted()
 	const [subscriptionName, setSubscriptionName] = useState("")
 	const [monthlyPrice, setMonthlyPrice] = useState("")
+	const [ownerAddress, setOwner] = useState("")
 	const [isUSDCAccepted, setUSDC] = useState(false)
 	const [isDAIAccepted, setDAI] = useState(false)
 	const [isUSDTAccepted, setUSDT] = useState(false)
@@ -26,7 +27,7 @@ const Subscription: NextPage = () => {
 		args: [
 			convertPricesToArray(),
 			subscriptionName,
-			address,
+			ownerAddress,
 			isUSDCAccepted,
 			isDAIAccepted,
 			isUSDTAccepted,
@@ -56,9 +57,14 @@ const Subscription: NextPage = () => {
 
 	function deployContractButton() {
 		return (
-			<button
+			subscriptionName == "" || monthlyPrice == "" || ownerAddress == ""
+			? <button className={styles.submit_btn}>
+				Deploy subscription!
+			</button> 
+			: <button
 				className={styles.submit_btn}
-				disabled={!write}
+				// below works also but doesn't produce the "fill this up" tag
+				//disabled={!write || subscriptionName == "" || monthlyPrice ==""}
 				onClick={() => write?.()}
 			>
 				Deploy subscription!
@@ -82,6 +88,7 @@ const Subscription: NextPage = () => {
 							Subscription Name:
 							<input
 								type="text"
+								placeholder="e.g. SuperFlow subscription"
 								value={subscriptionName}
 								onChange={() => handleChange(event, setSubscriptionName)}
 								className={styles.subscription_name}
@@ -90,18 +97,30 @@ const Subscription: NextPage = () => {
 						</label>
 						<label>
 							Monthly Price(s): <br/>
-							<small>Separate by "," for multiple prices. E.g. 10,14,16</small>
+							<small>Separate by "," for multiple prices</small>
 							<input
 								type="text"
+								placeholder="e.g. 7, 10, 15"
 								value={monthlyPrice}
 								onChange={() => handleChange(event, setMonthlyPrice)}
 								className={styles.subscription_name}
 								required
 							/>
 						</label>
+						<label>
+							Owner: <br/>
+							<input
+								type="text"
+								placeholder="e.g. 0x7432D6d775AbC6ECb0b99F3F9Bf589d5c6EB91AE"
+								value={ownerAddress}
+								onChange={() => handleChange(event, setOwner)}
+								className={styles.subscription_name}
+								required
+							/>
+						</label>
 						Accepted Stablecoin:
 						<label className={styles.payment_method_label}>
-							USDC
+							USDc
 							<input
 								type="checkbox"
 								name="usdc"
@@ -121,7 +140,7 @@ const Subscription: NextPage = () => {
 							/>
 						</label>
 						<label className={styles.payment_method_label}>
-							UDST
+							UDSt
 							<input
 								type="checkbox"
 								name="usdt"
