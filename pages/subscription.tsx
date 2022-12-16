@@ -78,7 +78,7 @@ const Subscription: NextPage = () => {
 
 			<ApplicationLayout isActive={[0, 1]}>
 				<main className={styles.container}>
-					<form>
+					<form className={styles.form}>
 						<label>
 							Subscription Name:
 							<input
@@ -100,34 +100,34 @@ const Subscription: NextPage = () => {
 							/>
 						</label>
 						Accepted Stablecoin:
-						<label className={styles.payment_method}>
+						<label className={styles.payment_method_label}>
 							USDC
 							<input
 								type="checkbox"
 								name="usdc"
 								value="true"
 								onChange={() => handleChange(event, setUSDC)}
-								className={styles.payment_method_checkbox}
+								className={styles.checkbox}
 							/>
 						</label>
-						<label className={styles.payment_method}>
+						<label className={styles.payment_method_label}>
 							DAI
 							<input
 								type="checkbox"
 								name="dai"
 								value="true"
 								onChange={() => handleChange(event, setDAI)}
-								className={styles.payment_method_checkbox}
+								className={styles.checkbox}
 							/>
 						</label>
-						<label className={styles.payment_method}>
+						<label className={styles.payment_method_label}>
 							UDST
 							<input
 								type="checkbox"
 								name="usdt"
 								value="true"
 								onChange={() => handleChange(event, setUSDT)}
-								className={styles.payment_method_checkbox}
+								className={styles.checkbox}
 							/>
 						</label>
 						<label className={styles.streaming_payment_label}>
@@ -137,17 +137,17 @@ const Subscription: NextPage = () => {
 								name="streaming"
 								value="true"
 								onChange={() => handleChange(event, setIsStreamingPayment)}
-								className={styles.streaming_payment}
+								className={styles.checkbox}
 							/>
 						</label>
-						<label>
+						<label className={styles.recurring_payment_label}>
 							Recurring payment:
 							<input
 								type="checkbox"
 								name="recurring"
 								value="true"
 								onChange={() => handleChange(event, setIsRecurring)}
-								className={styles.recurring_payment}
+								className={styles.checkbox}
 							/>
 						</label>
 						<div>

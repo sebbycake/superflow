@@ -5,29 +5,39 @@
   align-items: center;
 }
 
+.form {
+  padding: 2.5em 4em;
+  border-radius: 10px;
+  box-shadow: rgb(204 204 204 / 25%) 0px 0px 6px 3px;
+}
+
 .subscription_name,
-.monthly_price,
-.streaming_payment,
-.recurring_payment {
+.monthly_price {
   display: block;
+  width: 100%;
   border: none;
   padding: 1em 2em;
   border-radius: 6px;
   margin-bottom: 2em;
-  background-color: #e0e0e0;
+  background-color: #F0F0F0;
   outline: none;
 }
 
-.streaming_payment_label {
-  display: block;
-  margin-top: 2em;
-}
-
-.payment_method {
+.payment_method_label {
   margin-left: 1em;
 }
 
-.payment_method_checkbox {
+.streaming_payment_label {
+  margin-top: 2em;
+}
+
+.streaming_payment_label,
+.recurring_payment_label {
+  display: block;
+  margin-bottom: 2em;
+}
+
+.checkbox {
   margin-left: 0.2em;
 }
 
