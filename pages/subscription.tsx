@@ -4,46 +4,38 @@ import Head from "next/head"
 import Link from "next/link"
 import ApplicationLayout from "../components/ApplicationLayout"
 import styles from "../styles/Subscription.module.css"
-import { usePrepareContractWrite, useContractWrite, useAccount } from 'wagmi'
-import {ConnectButton} from '@rainbow-me/rainbowkit';
-import { abi } from "../utils/abi";
-import {isMounted} from "../hooks/isMounted"
-
+import { usePrepareContractWrite, useContractWrite, useAccount } from "wagmi"
+import { ConnectButton } from "@rainbow-me/rainbowkit"
+import { abi } from "../utils/abi"
+import { isMounted } from "../hooks/isMounted"
 
 const Subscription: NextPage = () => {
-	const mounted = isMounted();
+	const mounted = isMounted()
 	const [subscriptionName, setSubscriptionName] = useState("")
 	const [monthlyPrice, setMonthlyPrice] = useState("")
 	const [crypto, setCrypto] = useState("USDC")
-	const [IsStreamingPayment, setIsStreamingPayment] = useState(false)
+	const [isStreamingPayment, setIsStreamingPayment] = useState(false)
 	const [isRecurring, setIsRecurring] = useState(false)
 	const { address, isConnected } = useAccount()
 	const { config } = usePrepareContractWrite({
-		address: '0x7432D6d775AbC6ECb0b99F3F9Bf589d5c6EB91AE',
+		address: "0x7432D6d775AbC6ECb0b99F3F9Bf589d5c6EB91AE",
 		abi: abi,
-		functionName: 'createSubscription',
-		args: [[10,20], "hello", "0xcb3c44718789f3eA8E3E8195dBd0a8e88Dd53469", true, true, true, true, true]
+		functionName: "createSubscription",
+		args: [
+			[10, 20],
+			"hello",
+			"0xcb3c44718789f3eA8E3E8195dBd0a8e88Dd53469",
+			true,
+			true,
+			true,
+			true,
+			true,
+		],
 	})
 	const { data, isLoading, isSuccess, write } = useContractWrite(config)
 
-	function handleName(event) {
-		setSubscriptionName(event.target.value)
-	}
-
-	function handlePrice(event) {
-		setMonthlyPrice(event.target.value)
-	}
-
-	function handleCrypto(event) {
-		setCrypto(event.target.value)
-	}
-
-	function handleStreaming(event) {
-		setIsStreamingPayment(event.target.value)
-	}
-
-	function handleRecurring(event) {
-		setIsRecurring(event.target.value)
+	function handleChange(event, setData) {
+		setData(event.target.value)
 	}
 
 	// const connectWalletButton = () => {
@@ -53,17 +45,25 @@ const Subscription: NextPage = () => {
 	//   }
 	function connectWalletButton() {
 		return (
-			<ConnectButton accountStatus="address" chainStatus="name" showBalance={false} />
+			<ConnectButton
+				accountStatus="address"
+				chainStatus="name"
+				showBalance={false}
+			/>
 		)
 	}
 
 	function deployContractButton() {
 		return (
-		  <button className={styles.submit_btn} disabled={!write} onClick={() => write?.()}>
-			Deploy subscription!
-		  </button>
+			<button
+				className={styles.submit_btn}
+				disabled={!write}
+				onClick={() => write?.()}
+			>
+				Deploy subscription!
+			</button>
 		)
-	  }
+	}
 
 	// TODO: handle inputs validation (e.g. check empty fields) when time permits
 
@@ -82,7 +82,7 @@ const Subscription: NextPage = () => {
 							<input
 								type="text"
 								value={subscriptionName}
-								onChange={handleName}
+								onChange={() => handleChange(event, setSubscriptionName)}
 								className={styles.subscription_name}
 								required
 							/>
@@ -93,7 +93,7 @@ const Subscription: NextPage = () => {
 							<input
 								type="number"
 								value={monthlyPrice}
-								onChange={handlePrice}
+								onChange={() => handleChange(event, setMonthlyPrice)}
 								className={styles.subscription_name}
 								required
 							/>
@@ -101,7 +101,12 @@ const Subscription: NextPage = () => {
 
 						<label>
 							Accepted Stablecoin:
-							<select name="crypto" className={styles.crypto} onChange={handleCrypto} required>
+							<select
+								name="crypto"
+								className={styles.crypto}
+								onChange={() => handleChange(event, setCrypto)}
+								required
+							>
 								<option value="usdc">USDC</option>
 								<option value="dai">DAI</option>
 								<option value="usdt">USDT</option>
@@ -114,7 +119,7 @@ const Subscription: NextPage = () => {
 								type="checkbox"
 								name="streaming"
 								value="true"
-								onChange={handleStreaming}
+								onChange={() => handleChange(event, setIsStreamingPayment)}
 								className={styles.streaming_payment}
 							/>
 						</label>
@@ -125,7 +130,7 @@ const Subscription: NextPage = () => {
 								type="checkbox"
 								name="recurring"
 								value="true"
-								onChange={handleRecurring}
+								onChange={() => handleChange(event, setIsRecurring)}
 								className={styles.recurring_payment}
 							/>
 						</label>
