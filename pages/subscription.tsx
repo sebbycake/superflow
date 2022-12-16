@@ -4,13 +4,27 @@ import Head from "next/head"
 import Link from "next/link"
 import ApplicationLayout from "../components/ApplicationLayout"
 import styles from "../styles/Subscription.module.css"
+import { usePrepareContractWrite, useContractWrite, useAccount } from 'wagmi'
+import {ConnectButton} from '@rainbow-me/rainbowkit';
+import { abi } from "../utils/abi";
+import {isMounted} from "../hooks/isMounted"
+
 
 const Subscription: NextPage = () => {
+	const mounted = isMounted();
 	const [subscriptionName, setSubscriptionName] = useState("")
 	const [monthlyPrice, setMonthlyPrice] = useState("")
 	const [crypto, setCrypto] = useState("USDC")
 	const [IsStreamingPayment, setIsStreamingPayment] = useState(false)
 	const [isRecurring, setIsRecurring] = useState(false)
+	const { address, isConnected } = useAccount()
+	const { config } = usePrepareContractWrite({
+		address: '0x7432D6d775AbC6ECb0b99F3F9Bf589d5c6EB91AE',
+		abi: abi,
+		functionName: 'createSubscription',
+		args: [[10,20], "hello", "0xcb3c44718789f3eA8E3E8195dBd0a8e88Dd53469", true, true, true, true, true]
+	})
+	const { data, isLoading, isSuccess, write } = useContractWrite(config)
 
 	function handleName(event) {
 		setSubscriptionName(event.target.value)
@@ -32,14 +46,24 @@ const Subscription: NextPage = () => {
 		setIsRecurring(event.target.value)
 	}
 
-	function handleSubmit(event) {
-		event.preventDefault()
-		alert("Subscription name: " + subscriptionName)
-		alert("Monthly price: " + monthlyPrice)
-		alert("Stablecoin selected: " + crypto)
-		alert("Is streaming: " + IsStreamingPayment)
-		alert("Is recurring: " + isRecurring)
+	// const connectWalletButton = () => {
+	// 	return (
+	// 	<ConnectButton accountStatus="address" chainStatus="name" showBalance={false} />
+	// 	)
+	//   }
+	function connectWalletButton() {
+		return (
+			<ConnectButton accountStatus="address" chainStatus="name" showBalance={false} />
+		)
 	}
+
+	function deployContractButton() {
+		return (
+		  <button className={styles.submit_btn} disabled={!write} onClick={() => write?.()}>
+			Deploy subscription!
+		  </button>
+		)
+	  }
 
 	// TODO: handle inputs validation (e.g. check empty fields) when time permits
 
@@ -52,7 +76,7 @@ const Subscription: NextPage = () => {
 
 			<ApplicationLayout isActive={[0, 1]}>
 				<main className={styles.container}>
-					<form onSubmit={handleSubmit}>
+					<form>
 						<label>
 							Subscription Name:
 							<input
@@ -105,12 +129,12 @@ const Subscription: NextPage = () => {
 								className={styles.recurring_payment}
 							/>
 						</label>
+						<div>
+							{mounted ? isConnected ? deployContractButton() : connectWalletButton() : null}
+							{isLoading && <div>Check Wallet</div>}
+      						{isSuccess && <div>Transaction: {JSON.stringify(data)}</div>}
+						</div>
 
-						<input
-							type="submit"
-							value="Deploy Contract"
-							className={styles.submit_btn}
-						/>
 					</form>
 				</main>
 			</ApplicationLayout>

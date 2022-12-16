@@ -23,7 +23,7 @@ const Home: NextPage = () => {
 							SuperFlow provides an effective and powerful way to create and
 							manage your subscriptions
 						</p>
-						<Link href="/dashboard" className={styles.button}>Launch App</Link>
+						<Link href="/dashboard" className={styles.button} target="_blank">Launch App</Link>
 						<div className={styles.benefits}>
 							<div className={styles.benefit}>
 								<img src="/asset1.png" alt="" className={styles.benefit_img} />
