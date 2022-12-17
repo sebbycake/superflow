@@ -186,16 +186,20 @@ const Subscription: NextPage = () => {
 							</div>
 						</form>
 						<div className={`${styles.card__face} ${styles.card__face__back}`}>
-							<div>
-								<h1 className={styles.success_msg}>
-									Contract successfully deployed!
-								</h1>
+							<div className={styles.success_msg_box}>
+								<h2>SUCCESS</h2>
+							</div>
+							<div className={styles.success_info_box}>
+								<p className={styles.success_msg}>
+									Congratulations, your subscription contract is successfully
+									deployed.
+								</p>
 								<a
 									href={`https://goerli.etherscan.io/tx/${data?.hash}`}
 									target="_blank"
 									className={styles.link}
 								>
-									View transaction hash
+									View transaction details
 								</a>
 								<Link
 									className={styles.button}
@@ -204,11 +208,7 @@ const Subscription: NextPage = () => {
 								>
 									Deploy another contract
 								</Link>
-								<Link
-									className={styles.button}
-									href="/dashboard"
-									target="_blank"
-								>
+								<Link className={styles.button} href="/dashboard">
 									View dashboard
 								</Link>
 							</div>
