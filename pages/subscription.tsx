@@ -4,11 +4,16 @@ import Head from "next/head"
 import Link from "next/link"
 import ApplicationLayout from "../components/ApplicationLayout"
 import styles from "../styles/Subscription.module.css"
-import { usePrepareContractWrite, useContractWrite, useAccount, useWaitForTransaction} from "wagmi"
+import {
+	usePrepareContractWrite,
+	useContractWrite,
+	useAccount,
+	useWaitForTransaction,
+} from "wagmi"
 import { ConnectButton } from "@rainbow-me/rainbowkit"
 import { abi } from "../utils/abi"
 import { isMounted } from "../hooks/isMounted"
-import FlipCard, { BackCard, FrontCard } from '../components/FlipCard';
+import FlipCard, { BackCard, FrontCard } from "../components/FlipCard"
 
 const Subscription: NextPage = () => {
 	const mounted = isMounted()
@@ -42,9 +47,9 @@ const Subscription: NextPage = () => {
 		data: txData,
 		isSuccess: txSuccess,
 		error: txError,
-	  } = useWaitForTransaction({
+	} = useWaitForTransaction({
 		hash: data?.hash,
-	  });
+	})
 
 	function handleChange(event, setData) {
 		setData(event.target.value)
@@ -69,10 +74,12 @@ const Subscription: NextPage = () => {
 			</Head>
 
 			<ApplicationLayout isActive={[0, 1]}>
-				<FlipCard>
-				<FrontCard isCardFlipped={txSuccess}>
-					<main className={styles.container}>
-						<form className={styles.form} onSubmit={handleSubmit}>
+				<main className={`${styles.scene}`}>
+					<div className={`${styles.card} ${txSuccess && styles.is_flipped}`}>
+						<form
+							className={`${styles.card__face} ${styles.card__face__front}`}
+							onSubmit={handleSubmit}
+						>
 							<label>
 								Subscription Name:
 								<input
@@ -161,37 +168,54 @@ const Subscription: NextPage = () => {
 							<div>
 								{mounted ? (
 									isConnected ? (
-										<button className={styles.submit_btn} disabled={isLoading || isSuccess} 
-												data-mint-loading={isLoading} data-mint-started={isSuccess}>
+										<button
+											type="submit"
+											className={styles.submit_btn}
+											disabled={isLoading || isSuccess}
+											data-mint-loading={isLoading}
+											data-mint-started={isSuccess}
+										>
 											{isLoading && "Waiting for approval"}
 											{isSuccess && "Deploying..."}
 											{!isLoading && !isSuccess && "Deploy subscription!"}
 										</button>
 									) : (
-										<ConnectButton/>
+										<ConnectButton />
 									)
 								) : null}
 							</div>
 						</form>
-					</main>
-				</FrontCard>
-				
-				<BackCard isCardFlipped={txSuccess}>
-					<div style={{ padding: 24 }}>
-						<h1 style={{ marginTop: 24, marginBottom: 6 }}>Contract Deployed!</h1>
-						<p style={{ marginTop: 10 }}>
-							View{' '}
-							<a href={`https://goerli.etherscan.io/tx/${data?.hash}`} target ="_blank">
-								<u>
-									Transaction Hash
-								</u>
-							</a>
-						</p>
+						<div className={`${styles.card__face} ${styles.card__face__back}`}>
+							<div>
+								<h1 className={styles.success_msg}>
+									Contract successfully deployed!
+								</h1>
+								<a
+									href={`https://goerli.etherscan.io/tx/${data?.hash}`}
+									target="_blank"
+									className={styles.link}
+								>
+									View transaction hash
+								</a>
+								<Link
+									className={styles.button}
+									href="/subscription"
+									target="_blank"
+								>
+									Deploy another contract
+								</Link>
+								<Link
+									className={styles.button}
+									href="/dashboard"
+									target="_blank"
+								>
+									View dashboard
+								</Link>
+							</div>
+						</div>
 					</div>
-				</BackCard>
-				</FlipCard>
+				</main>
 			</ApplicationLayout>
-
 		</div>
 	)
 }
