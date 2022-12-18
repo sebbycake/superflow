@@ -25,22 +25,25 @@ const Dashboard: NextPage = () => {
 						<div className={styles.function}>
 							<div className={styles.function_header}>Get Super Tokens</div>
 							<span className={styles.function_info}>Wrap any token in your wallet</span>
-							<img src={require("../public/logo.png").default}/>
+							<img className={styles.function_icon} src="./dashboardIcon/supertoken.png" alt="supertoken"/>
 						</div>
 
 						<div className={styles.function}>
 							<div className={styles.function_header}>Send a Stream</div>
 							<span className={styles.function_info}>Pick a recipient, token and network</span>
+							<img className={styles.function_icon} src="./dashboardIcon/stream.png" alt="stream"/>
 						</div>
 
 						<div className={styles.function}>
 							<div className={styles.function_header}>Modify and Cancel Streams</div>
 							<span className={styles.function_info}>Don't let your balances hit zero!</span>
+							<img className={styles.function_icon} src="./dashboardIcon/modify.png" alt="modify"/>
 						</div>
 					
 						<div className={styles.function}>
 							<div className={styles.function_header}>Try out SuperFlow</div>
 							<span className={styles.function_info}>Start on a Testnet</span>
+							<img className={styles.function_icon} src="./dashboardIcon/test.png" alt="test"/>
 						</div>
 
 					</div>
