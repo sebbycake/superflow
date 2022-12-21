@@ -13,13 +13,11 @@ import {
 import { ConnectButton } from "@rainbow-me/rainbowkit"
 import { abi } from "../utils/abi"
 import { isMounted } from "../hooks/isMounted"
-import FlipCard, { BackCard, FrontCard } from "../components/FlipCard"
 
 const Subscription: NextPage = () => {
 	const mounted = isMounted()
 	const [subscriptionName, setSubscriptionName] = useState("")
 	const [monthlyPrice, setMonthlyPrice] = useState("")
-	const [ownerAddress, setOwner] = useState("")
 	const [isUSDCAccepted, setUSDC] = useState(false)
 	const [isDAIAccepted, setDAI] = useState(false)
 	const [isUSDTAccepted, setUSDT] = useState(false)
@@ -33,7 +31,7 @@ const Subscription: NextPage = () => {
 		args: [
 			convertPricesToArray(),
 			subscriptionName,
-			ownerAddress,
+			address,
 			isUSDCAccepted,
 			isDAIAccepted,
 			isUSDTAccepted,
@@ -43,7 +41,7 @@ const Subscription: NextPage = () => {
 	})
 	const { data, isLoading, isSuccess, error, write } = useContractWrite(config)
 
-	const {
+	var {
 		data: txData,
 		isSuccess: txSuccess,
 		error: txError,
@@ -64,7 +62,17 @@ const Subscription: NextPage = () => {
 		write?.()
 	}
 
-	// TODO: handle inputs validation (e.g. check empty fields) when time permits
+	function handleFlip() {
+		// var hi = (document.getElementById('mainForm') as HTMLFormElement);
+		// hi.reset()y
+		// not sure why the above doesnt work
+
+		var element = document.getElementById("card");
+		if (element != null) {
+			element.classList.toggle(styles.is_flipped);
+		}
+	}
+	
 
 	return (
 		<div>
@@ -75,13 +83,17 @@ const Subscription: NextPage = () => {
 
 			<ApplicationLayout isActive={[0, 1]}>
 				<main className={`${styles.scene}`}>
-					<div className={`${styles.card} ${txSuccess && styles.is_flipped}`}>
+					<div id = "card" className={`${styles.card} ${txSuccess && styles.is_flipped}`}>
 						<form
+							id = "mainForm"
 							className={`${styles.card__face} ${styles.card__face__front}`}
 							onSubmit={handleSubmit}
 						>
+							<div className={styles.headerTag}>
+								<p className={styles.headerTagTxt}>Create Subscription</p>
+							</div>
 							<label>
-								Subscription Name:
+								Subscription name:
 								<input
 									type="text"
 									placeholder="e.g. SuperFlow subscription"
@@ -92,7 +104,7 @@ const Subscription: NextPage = () => {
 								/>
 							</label>
 							<label>
-								Monthly Price(s): <br />
+								Monthly price(s): <br />
 								<small>Separate by "," for multiple prices</small>
 								<input
 									type="text"
@@ -103,67 +115,62 @@ const Subscription: NextPage = () => {
 									required
 								/>
 							</label>
-							<label>
-								Owner:
-								<input
-									type="text"
-									placeholder="e.g. 0x7432D6d775AbC6ECb0b99F3F9Bf589d5c6EB91AE"
-									value={ownerAddress}
-									onChange={() => handleChange(event, setOwner)}
-									className={styles.text_input}
-									required
-								/>
+							Accepted stablecoins:
+							<label className={styles.stablecoin_box}>
+								<p className={styles.subscription_text}>USDC:</p>
+								<label className = {styles.switch}>
+									<input									
+										type="checkbox"
+										name="recurring"
+										value="true"
+										onChange={() => handleChange(event, setUSDC)}
+									/>
+									<span className={styles.slider}></span>
+								</label>
+								<p className={styles.subscription_text}>DAI:</p>
+								<label className = {styles.switch}>
+									<input									
+										type="checkbox"
+										name="recurring"
+										value="true"
+										onChange={() => handleChange(event, setDAI)}
+									/>
+									<span className={styles.slider}></span>
+								</label>
+								<p className={styles.subscription_text}>USDT:</p>
+								<label className = {styles.switch}>
+									<input									
+										type="checkbox"
+										name="recurring"
+										value="true"
+										onChange={() => handleChange(event, setUSDT)}
+									/>
+									<span className={styles.slider}></span>
+								</label>
 							</label>
-							Accepted Stablecoin:
-							<label className={styles.payment_method_label}>
-								USDc
-								<input
-									type="checkbox"
-									name="usdc"
-									value="true"
-									onChange={() => handleChange(event, setUSDC)}
-									className={styles.checkbox}
-								/>
-							</label>
-							<label className={styles.payment_method_label}>
-								DAI
-								<input
-									type="checkbox"
-									name="dai"
-									value="true"
-									onChange={() => handleChange(event, setDAI)}
-									className={styles.checkbox}
-								/>
-							</label>
-							<label className={styles.payment_method_label}>
-								UDSt
-								<input
-									type="checkbox"
-									name="usdt"
-									value="true"
-									onChange={() => handleChange(event, setUSDT)}
-									className={styles.checkbox}
-								/>
-							</label>
-							<label className={styles.recurring_payment_label}>
-								Recurring payment:
-								<input
-									type="checkbox"
-									name="recurring"
-									value="true"
-									onChange={() => handleChange(event, setIsRecurring)}
-									className={styles.checkbox}
-								/>
-							</label>
-							<label className={styles.streaming_payment_label}>
-								Streaming as a form of payment:
-								<input
-									type="checkbox"
-									name="streaming"
-									value="true"
-									onChange={() => handleChange(event, setIsStreamingPayment)}
-									className={styles.checkbox}
-								/>
+
+							<label className={styles.subscription_box}>
+								<p className={styles.subscription_text}>Recurring payment:</p>
+								<label className = {styles.switch}>
+									<input									
+										type="checkbox"
+										name="recurring"
+										value="true"
+										onChange={() => handleChange(event, setIsRecurring)}
+									/>
+									<span className={styles.slider}></span>
+								</label>
+
+								<p className={styles.subscription_text}>Streaming payment:</p>
+								<label className = {styles.switch}>
+									<input									
+										type="checkbox"
+										name="recurring"
+										value="true"
+										onChange={() => handleChange(event, setIsStreamingPayment)}
+									/>
+									<span className={styles.slider}></span>
+								</label>
 							</label>
 							<div>
 								{mounted ? (
@@ -176,7 +183,7 @@ const Subscription: NextPage = () => {
 											data-mint-started={isSuccess}
 										>
 											{isLoading && "Waiting for approval"}
-											{isSuccess && "Deploying..."}
+											{isSuccess && "Deploying please wait..."}
 											{!isLoading && !isSuccess && "Deploy subscription!"}
 										</button>
 									) : (
@@ -201,13 +208,11 @@ const Subscription: NextPage = () => {
 								>
 									View transaction details
 								</a>
-								<Link
-									className={styles.button}
-									href="/subscription"
-									target="_blank"
-								>
-									Deploy another contract
-								</Link>
+								<form>
+									<button  className={styles.button} onClick={handleFlip}>
+										Deploy another contract									
+									</button>
+								</form>
 								<Link className={styles.button} href="/dashboard">
 									View dashboard
 								</Link>
