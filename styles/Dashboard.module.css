@@ -1,0 +1,12 @@
+.container {
+    height: 100vh;
+    display: flex;
+    margin-top: 100px;
+    flex-direction: column;
+  }
+
+.header {
+    font-weight: bold;
+    font-size: 200%;
+    text-align: start;
+}
