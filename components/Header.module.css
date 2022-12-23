@@ -2,6 +2,10 @@
 	border-top: 10px solid black;
 }
 
+.hidden {
+	display: none;
+}
+	
 .container {
 	width: 90%;
 	max-width: 1350px;
@@ -19,7 +23,6 @@
 	width: 45%;
 	display: flex;
 	align-items: center;
-	/* background-color: blue; */
 }
 
 .logo_img {
@@ -45,7 +48,7 @@
 }
 
 .nav_link {
-	font-weight: 500;
+	font-weight: 400;
 	box-sizing: border-box;
 }
 
@@ -72,16 +75,46 @@
 		flex-direction: column;
 	}
 
+	.hidden {
+		display: block;
+	}
+
+	.hamburger {
+		display: block;
+		position: absolute;
+		right: 2em;
+		z-index: 2;
+		width: 10%;
+	}
+
 	.logo {
-		margin-bottom: 2em;
+		position: absolute;
+		left: 2em;
+		z-index: 2;
 	}
 
 	.nav_links {
+		position: absolute;
+		top: 0vh;
+		right: 0px;
+		height: 100vh;
+		width: 100%;
 		flex-direction: column;
+		justify-content:space-evenly;
+    background-color: #fff;
+    z-index: 1;
+		margin-top: 1em;
+		display: none;
+	}
+
+	.nav_active {
+		display: flex;
 	}
 
 	.nav_link {
-		margin-bottom: 1em;
+		margin-top: 1.2em;
+		font-weight: 700;
+		font-size: 1.8em;
 	}
 
 	.button {

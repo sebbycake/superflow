@@ -1,0 +1,262 @@
+.headerTag {
+  background-color: #f0f9f0;
+  color: #1ebd3c;
+  height: 2.5rem;
+  width: 10.5rem;
+  border-radius: 7px;
+  text-align: center;
+  vertical-align: middle;  
+  margin-bottom: 1.6rem;
+  margin-top: 0.3rem;
+}
+
+.headerTagTxt{
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.text_input {
+  display: block;
+  width: 100%;
+  border: none;
+  padding: 1em 2em;
+  border-radius: 6px;
+  margin-bottom: 1.7em;
+  background-color: #F0F0F0;
+  outline: none;
+}
+
+.stablecoin_box{
+  display: flex;
+  margin-top: 0.8rem;
+}
+
+.subscription_box{
+  display: flex;
+  margin-top: 2rem;
+}
+
+.subscription_text{
+  position: relative;
+  transform: translateY(10%);
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  margin: auto;
+  margin-left: 0.7rem;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 15px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 12px;
+}
+
+input:checked + .slider {
+  background-color: #1ebd3c;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #1ebd3c;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+
+
+
+.checkbox {
+  margin-left: 0.2em;
+}
+
+.submit_btn {
+  display: block;
+  cursor: pointer;
+  background-color: black;
+  color: #fff;
+  padding: 1em 1.5em;
+  border-radius: 8px;
+  width: 100%;
+  transition: all ease 100ms;
+  margin: auto;
+  margin-top: 2.2em;
+}
+
+.submit_btn:not(:disabled):hover {
+  transform: scale(1.012)
+}
+
+
+.submit_btn[data-mint-loading="true"] {
+  background: rgba(22, 25, 31, 0.24);
+}
+
+.submit_btn[data-mint-started="true"] {
+  background-image: linear-gradient(270deg, black, black);
+  position: relative;
+}
+
+.submit_btn[data-mint-started="true"]::after {
+  animation-name: pulse;
+  animation-duration: 600ms;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  background-color: black;
+  border-radius: inherit;
+  bottom: 0;
+  content: ' ';
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.submit_btn[data-mint-done="true"] {
+   opacity: 0;
+   transform: scale(0.85);
+}
+
+@keyframes pulse {
+  0% { opacity: 0 }
+  100% { opacity: '100%' }
+}
+
+/*
+  Card flip
+*/
+
+.scene {
+  width: 90%; 
+  max-width: 550px; 
+  margin: 0 auto;
+  margin-top: 15%; 
+  height: 70vh;
+  perspective: 1000px;
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 1.2s;
+  transform-style: preserve-3d;
+}
+
+.card__face {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  backface-visibility: hidden;
+}
+
+.card__face__front {
+  padding: 2em;
+}
+
+.card__face__back {
+  background: #F5F5F5;
+  transform: rotateY( 180deg );
+  text-align: center;
+  border-radius: 15px;
+  box-shadow: rgb(204 204 204 / 25%) 0px 0px 6px 3px;
+}
+
+.is_flipped {
+  transform: rotateY(-180deg);
+}
+
+.success_msg_box {
+  background-color: #bce4bc;
+  color: #1ebd3c;
+  padding: 2em;
+  height: 25vh;
+  font-size: 2.5em;
+  margin-bottom: 1.6em;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.success_info_box {
+  padding: 1em 2em;
+}
+
+.success_msg {
+  font-size: 1.1em;
+  margin-bottom: 1em;
+} 
+
+.link {
+  display: block;
+  text-decoration: underline;
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+
+.button {
+	display: block;
+  width: 70%;
+	background: #000;
+	color: #fff;
+	border-radius: 6px;
+	padding: 0.7em 1.7em;
+  margin: 0 auto;
+	margin-bottom: 1em;
+}
+
+@media (min-width: 675px) {
+
+  .scene {
+    width: 45%; 
+    height: 75vh;
+    margin-top: 6%; 
+  } 
+
+  .card__face__front {
+    border-radius: 15px;
+    box-shadow: rgb(204 204 204 / 25%) 0px 0px 6px 3px;
+  }
+
+  .submit_btn {
+    width: 70%;
+  }
+
+}

@@ -1,0 +1,33 @@
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.contents {
+  margin-left: 8%;
+}
+/* .header {
+  font-weight: bold;
+  font-size: 150%;
+  margin-top: 3.5rem;
+} */
+
+.headerTag {
+  background-color: #f0f9f0;
+  color: #1ebd3c;
+  height: 3rem;
+  width: 10.5rem;
+  border-radius: 7px;
+  text-align: center;
+  vertical-align: middle;  
+  margin-top: 3.5rem;
+  font-size: 108%;
+}
+
+.headerTagTxt{
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
