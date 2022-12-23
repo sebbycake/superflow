@@ -9,9 +9,10 @@ import {
 	useContractWrite,
 	useAccount,
 	useWaitForTransaction,
+	useContractEvent,
 } from "wagmi"
 import { ConnectButton } from "@rainbow-me/rainbowkit"
-import { abi } from "../utils/abi"
+import { abi } from "../utils/FactoryAbi"
 import { isMounted } from "../hooks/isMounted"
 
 const Subscription: NextPage = () => {
@@ -24,8 +25,8 @@ const Subscription: NextPage = () => {
 	const [isRecurring, setIsRecurring] = useState(false)
 	const [isStreamingPayment, setIsStreamingPayment] = useState(false)
 	const { address, isConnected } = useAccount()
-	const { config } = usePrepareContractWrite({
-		address: "0x7432D6d775AbC6ECb0b99F3F9Bf589d5c6EB91AE",
+	const { config } = usePrepareContractWrite({ //FACTORY
+		address: "0x9e326385f0DFCEEc61ff255a2616484C257a23CC",
 		abi: abi,
 		functionName: "createSubscription",
 		args: [
@@ -39,6 +40,15 @@ const Subscription: NextPage = () => {
 			isStreamingPayment,
 		],
 	})
+	useContractEvent({ //FACTORY
+		address: '0x9e326385f0DFCEEc61ff255a2616484C257a23CC',
+		abi: abi,
+		eventName: 'SubscriptionCreated',
+		listener(subscription) {
+		  console.log(subscription)
+		},
+	})
+
 	const { data, isLoading, isSuccess, error, write } = useContractWrite(config)
 
 	var {

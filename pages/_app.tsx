@@ -16,7 +16,7 @@ const ubuntu = Ubuntu({
 
 const { chains, provider } = configureChains(
 	// we'll be using goerli for testing
-	[goerli, mainnet, polygon, optimism, arbitrum],
+	[goerli, polygon],
 	//api key to add to .env later. but adding here so everyone can use for now
 	[alchemyProvider({ apiKey: "9RscFf-M5Wz5EMfVOcX9Wnic6kAUMB6r" }), publicProvider()]
 );

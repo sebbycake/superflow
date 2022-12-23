@@ -1,10 +1,8 @@
 .table {
     width: 90%;
     border-radius: 10px;
-    box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.5);
-    transform: translateY(-5px);
-    margin-top: 30px;
-    justify-items: left;
+    box-shadow: rgb(204 204 204 / 25%) 0px 0px 6px 3px;
+    margin-top: 3rem;
 }
 
 .tableheader {
@@ -22,15 +20,40 @@
     border-bottom: 2px solid #e0e0e0;
 }
 
-.asset,
-.balance,
-.netflow,
-.inflowoutflow,
-.chevrons {
-    /* margin-right: 1px; */
-    padding-right: 100px;
+.subheaderText{
+    margin: auto;
     color: #bdbaba;
     outline: none;
+}
+
+.subheaderAsset {
+    margin-left: 1.6rem;
+    margin-right: 2rem;
+    color: #bdbaba;
+}
+
+.content {
+    display: flex;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.content_text{
+    margin: auto;
+    width: 50%;
+    text-align: center;
+}
+
+.contentAsset{
+    margin-left: 3.6rem;
+    margin-right: 5rem;
+}
+
+.contentBalance {
+    width: 30%;
+    text-align: center;
+    margin-right: 0;
+    transform: translateX(-1rem);
 }
 
 .row {
@@ -43,21 +66,3 @@
     margin: 20px;
     
 }
-
-.chevrons_png {
-    min-width: 3px;
-	max-width: 10%;
-}
-
-
-/* .asset,
-.balance,
-.netflow
- {
-  display: block;
-  border: none;
-  padding: 1em 2em;
-  border-radius: 6px;
-  margin-bottom: 2em;
-  
-} */
