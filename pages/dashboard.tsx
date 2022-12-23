@@ -3,7 +3,7 @@ import Head from "next/head"
 import React, { useState } from "react"
 import Link from "next/link"
 import ApplicationLayout from "../components/ApplicationLayout"
-import DashboardTable from "../components/DashboardTable"
+import DashboardTables from "../components/DashboardTables"
 import styles from "../styles/Dashboard.module.css"
 import { isMounted } from "../hooks/isMounted"
 import {
@@ -30,8 +30,7 @@ const Dashboard: NextPage = () => {
 						</div>
 						<div>
 							{mounted ? (
-								<DashboardTable>
-								</DashboardTable>
+								<DashboardTables />
 								): (null)
 							}						
 						</div>
