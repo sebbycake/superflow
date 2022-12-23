@@ -113,7 +113,6 @@ input:checked + .slider:before {
   border-radius: 8px;
   width: 100%;
   transition: all ease 100ms;
-  width: 70%;
   margin: auto;
   margin-top: 2.2em;
 }
@@ -163,11 +162,11 @@ input:checked + .slider:before {
 */
 
 .scene {
-  width: 45%; 
+  width: 90%; 
   max-width: 550px; 
-  margin: auto;
-  margin-top: 6%; 
-  height: 75vh;
+  margin: 0 auto;
+  margin-top: 15%; 
+  height: 70vh;
   perspective: 1000px;
 }
 
@@ -188,8 +187,6 @@ input:checked + .slider:before {
 
 .card__face__front {
   padding: 2em;
-  border-radius: 15px;
-  box-shadow: rgb(204 204 204 / 25%) 0px 0px 6px 3px;
 }
 
 .card__face__back {
@@ -243,4 +240,23 @@ input:checked + .slider:before {
 	padding: 0.7em 1.7em;
   margin: 0 auto;
 	margin-bottom: 1em;
+}
+
+@media (min-width: 675px) {
+
+  .scene {
+    width: 45%; 
+    height: 75vh;
+    margin-top: 6%; 
+  } 
+
+  .card__face__front {
+    border-radius: 15px;
+    box-shadow: rgb(204 204 204 / 25%) 0px 0px 6px 3px;
+  }
+
+  .submit_btn {
+    width: 70%;
+  }
+
 }
