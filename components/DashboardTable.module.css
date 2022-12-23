@@ -1,85 +1,84 @@
 .table {
-    width: 90%;
-    border-radius: 10px;
-    box-shadow: rgb(204 204 204 / 25%) 0px 0px 6px 3px;
-    margin-top: 3rem;
+  width: 90%;
+  border-radius: 10px;
+  box-shadow: rgb(204 204 204 / 25%) 0px 0px 6px 3px;
+  margin-bottom: 3rem;
 }
 
 .tableheader {
-    padding-left: 30px;
-    padding-top: 20px;
-    justify-content: left;
-    font-weight: bold;
+  padding-left: 30px;
+  padding-top: 20px;
+  justify-content: left;
+  font-weight: bold;
 }
 
 .subheader {
-    display: flex;
-    margin-top: 30px;
-    align-items: center;
-    padding-left: 30px;
-    border-bottom: 2px solid #e0e0e0;
+  display: flex;
+  margin-top: 30px;
+  align-items: center;
+  padding-left: 30px;
+  border-bottom: 2px solid #e0e0e0;
 }
 
 .subheaderText{
-    margin: auto;
-    color: #bdbaba;
-    outline: none;
+  margin: auto;
+  color: #bdbaba;
+  outline: none;
 }
 
 .subheaderAsset {
-    margin-left: 1.6rem;
-    margin-right: 2rem;
-    color: #bdbaba;
+  margin-left: 1.6rem;
+  margin-right: 2rem;
+  color: #bdbaba;
 }
 
 .content {
-    display: flex;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+  display: flex;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 .content_text{
-    margin: auto;
-    width: 50%;
-    text-align: center;
+  margin: auto;
+  width: 50%;
+  text-align: center;
 }
 
 .contentAsset{
-    margin-left: 3.6rem;
-    margin-right: 5rem;
+  margin-left: 3.6rem;
+  margin-right: 5rem;
 }
 
 .contentBalance {
-    width: 30%;
-    text-align: center;
-    margin-right: 0;
-    transform: translateX(-1rem);
+  width: 30%;
+  text-align: center;
+  margin-right: 0;
+  transform: translateX(-1rem);
 }
 
 .row {
-    width: 80%;
+  width: 80%;
 }
 
 .logo_img {
-	min-width: 3px;
-	max-width: 5%;
-    margin: 20px;
-    
+min-width: 3px;
+max-width: 5%;
+  margin: 20px;
+  
 }
 
 .loading{
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    text-align: center;
-    animation-name: pulse;
-    animation-duration: 600ms;
-    animation-direction: alternate;
-    animation-iteration-count: infinite;
-    animation-timing-function: ease-in-out;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  animation-name: pulse;
+  animation-duration: 600ms;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
 }
 
 @keyframes pulse {
 0% { opacity: 0 }
 100% { opacity: '100%' }
 }
-  
