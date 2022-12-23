@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Link from "next/link"
 import styles from "./ApplicationLayout.module.css"
 import {ConnectButton} from '@rainbow-me/rainbowkit';
+import isActive from "./Header"
 
 function ApplicationLayout({isActive, children }) {
 

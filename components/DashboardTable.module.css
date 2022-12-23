@@ -9,7 +9,7 @@
   padding-left: 30px;
   padding-top: 20px;
   justify-content: left;
-  font-weight: bold;
+  font-weight: 450;
 }
 
 .subheader {
@@ -56,27 +56,59 @@
   transform: translateX(-1rem);
 }
 
-.row {
-  width: 80%;
-}
-
-.logo_img {
-min-width: 3px;
-max-width: 5%;
-  margin: 20px;
-  
-}
-
 .loading{
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+  margin-right: 15%;
+  margin-top: 20%;
   text-align: center;
+  font-size: 130%;
   animation-name: pulse;
   animation-duration: 600ms;
   animation-direction: alternate;
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
 }
+
+.noContracts{
+    box-shadow: rgb(204 204 204 / 25%) 0px 0px 6px 3px;
+    border-radius: 15px;
+    width: 40%;
+    height: 25rem;
+    margin-left: 20%;
+    margin-top: 5%;
+}
+
+.noContractsheader{
+    display: flex;
+    transform: translateY(130%);
+    align-items: center;
+}
+
+.noContractsImage{
+    max-width: 15%;
+    margin-left: 5rem;
+    transform: translate(10px, 5px);
+}
+
+.noContractsHeaderTxt{
+    margin: auto;
+    margin-right: 6.5rem;
+    font-weight: 450;
+    font-size: 100%;
+}
+  
+.noContractsbutton {
+    background-color: black;
+    color: white;
+    display: block;
+    width: 45%;
+    margin: 0 auto;
+    padding: 0.8em 1.5em;
+    border-radius: 6px;
+    text-align: center;
+    margin-top: 9rem;
+    font-size: 95%;
+}
+  
 
 @keyframes pulse {
 0% { opacity: 0 }

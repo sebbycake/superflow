@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect} from "react"
 import type { NextPage } from "next"
 import Head from "next/head"
 import Link from "next/link"
@@ -9,13 +9,14 @@ import {
 	useContractRead,
 	useContractReads,
 	useAccount,
-	useWaitForTransaction,
 } from "wagmi"
 import { subscriptionAbi } from "../utils/subscriptionAbi"
 import { abi } from "../utils/FactoryAbi"
+import styles from "./DashboardTable.module.css"
 
 function DashboardTables({ children }) {
 	const [contractaddresses, setContractAddresses] = useState([])
+	const [loading, setLoading] = useState(true) // Loading state
 	const { address, isConnected } = useAccount()
 	const contractRead = useContractRead({
 		//FACTORY
@@ -25,6 +26,7 @@ function DashboardTables({ children }) {
 		args: [address],
 		onSuccess(data) {
 			setContractAddresses(data) //sets contract address now to an array containing all addresses of deployed
+			setLoading(false)
 		},
 	})
 
@@ -54,7 +56,8 @@ function DashboardTables({ children }) {
 		contracts: contractReads,
 		watch: true,
 		onSuccess(datas) {
-			// well this is horrible code but it works
+			// contractaddress.length is always 0 in the initial state. this for loop doesnt run hence loading is still true
+			// only after data is fetched then for loop runs and setloading is complete to false
 			for (let i = 0; i < contractaddresses.length; i++) {
 				dataSet[i] = []
 				for (let j = 0; j < 4; j++) {
@@ -64,19 +67,39 @@ function DashboardTables({ children }) {
 						dataSet[i][j] = parseInt(datas[i][j])
 					}
 				}
+				// if (i == contractaddresses.length - 1) {
+				// 	setLoading(false)
+				// }
 			}
 			setdatalist(dataSet)
+			// not sure why setLoading here wont work. seems to skip the for loop?
 		},
 	})
+
 
 	const allTables = dataList.map((contractArr, index) => (
 		<DashboardTable dataList={contractArr} contractAddress={contractaddresses[index]}/>
 	))
 
 	return (
-		<div style={{marginTop: "3em"}}>
-			{allTables}
-		</div>
+		loading	? ( 
+			<p className={styles.loading}>Loading data...</p>
+		) : (
+			contractaddresses.length == 0 
+		) ? (
+			<div className={styles.noContracts}>
+				<div className={styles.noContractsheader}>
+					<img src="/nocontract.png" alt=""  className={styles.noContractsImage}/>
+					<p className={styles.noContractsHeaderTxt}>You Have No Contracts</p>
+				</div>
+				<Link href="/subscription" className={styles.noContractsbutton}>Deploy One Now!</Link>
+
+			</div>
+		) : (
+			<div style={{marginTop: "2.6em"}}>
+				{allTables}
+			</div>
+		)
 	)
 }
 

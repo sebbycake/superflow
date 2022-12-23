@@ -26,7 +26,7 @@ const Dashboard: NextPage = () => {
 				<main className={styles.container}>
 					<div className={styles.contents}>
 						<div className={styles.headerTag}>
-							<h2 className={styles.headerTagTxt}>Smart Contracts:</h2>
+							<h2 className={styles.headerTagTxt}>Deployed Contracts:</h2>
 						</div>
 						<div>
 							{mounted ? (
