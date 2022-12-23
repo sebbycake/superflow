@@ -5,7 +5,7 @@
 .hidden {
 	display: none;
 }
-
+	
 .container {
 	width: 90%;
 	max-width: 1350px;
@@ -104,12 +104,11 @@
     background-color: #fff;
     z-index: 1;
 		margin-top: 1em;
-		transition: all 0.5s ease;
-		opacity: 0;
+		display: none;
 	}
 
 	.nav_active {
-		opacity: 1;
+		display: flex;
 	}
 
 	.nav_link {
