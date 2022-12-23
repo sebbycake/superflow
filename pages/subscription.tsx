@@ -50,7 +50,11 @@ const Subscription: NextPage = () => {
 	})
 
 	function handleChange(event, setData) {
-		setData(event.target.value)
+		if (event.target.type === "checkbox") {
+			setData(prev => !prev)
+		} else {
+			setData(event.target.value)
+		}
 	}
 
 	function convertPricesToArray() {
