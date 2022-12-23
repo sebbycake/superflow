@@ -30,8 +30,8 @@ const Dashboard: NextPage = () => {
 						</div>
 						<div>
 							{mounted ? (
-								<DashboardTables />
-								): (null)
+								<DashboardTables/>
+								): null
 							}						
 						</div>
 					</div>

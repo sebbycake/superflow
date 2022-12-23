@@ -1,7 +1,6 @@
 import "../styles/globals.css"
 import type { AppProps } from "next/app"
 import { Ubuntu } from "@next/font/google"
-import Layout from "../components/Layout"
 import "@rainbow-me/rainbowkit/styles.css";
 import { getDefaultWallets, RainbowKitProvider, darkTheme } from "@rainbow-me/rainbowkit";
 import { configureChains, createClient, WagmiConfig } from "wagmi";

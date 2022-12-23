@@ -1,5 +1,3 @@
-import {useState, useEffect} from "react"
-import Link from "next/link"
 import styles from "./DashboardTable.module.css"
 
 function DashboardTable({dataList, contractAddress}) {

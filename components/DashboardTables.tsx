@@ -1,10 +1,6 @@
-import { useState, useEffect} from "react"
-import type { NextPage } from "next"
-import Head from "next/head"
+import { useState } from "react"
 import Link from "next/link"
-import ApplicationLayout from "../components/ApplicationLayout"
 import DashboardTable from "./DashboardTable"
-import { isMounted } from "../hooks/isMounted"
 import {
 	useContractRead,
 	useContractReads,
@@ -56,7 +52,7 @@ function DashboardTables({ children }) {
 		contracts: contractReads,
 		watch: true,
 		onSuccess(datas) {
-			// contractaddress.length is always 0 in the initial state. this for loop doesnt run hence loading is still true
+			// contractaddress.length is always 0 in the initial state. this for loop doesnt run hence loading remains true
 			// only after data is fetched then for loop runs and setloading is complete to false
 			for (let i = 0; i < contractaddresses.length; i++) {
 				dataSet[i] = []
@@ -67,12 +63,8 @@ function DashboardTables({ children }) {
 						dataSet[i][j] = parseInt(datas[i][j])
 					}
 				}
-				// if (i == contractaddresses.length - 1) {
-				// 	setLoading(false)
-				// }
 			}
 			setdatalist(dataSet)
-			// not sure why setLoading here wont work. seems to skip the for loop?
 		},
 	})
 
