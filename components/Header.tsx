@@ -1,11 +1,16 @@
+import { useState } from "react"
 import Link from "next/link"
 import styles from "./Header.module.css"
-import {ConnectButton} from "@rainbow-me/rainbowkit"
+import { ConnectButton } from "@rainbow-me/rainbowkit"
 
 function Header() {
+		
+	const [isActive, setIsActive] = useState(false)
+
 	return (
 		<header className={styles.header}>
 			<nav className={`${styles.container} ${styles.container_flex}`}>
+
 				<div className={styles.logo}>
 					<img src="/logo.png" alt="" className={styles.logo_img} />
 					<div>
@@ -15,7 +20,16 @@ function Header() {
 						</p>
 					</div>
 				</div>
-				<div className={styles.nav_links}>
+
+				{/* Hamburger menu for mobile view  */}
+				<img
+					src="/hamburger_menu.svg"
+					alt="An SVG of hamburger menu"
+					className={`${styles.hidden} ${styles.hamburger}`}
+					onClick={() => setIsActive(prev => !prev)}
+				/>
+
+				<div className={`${styles.nav_links} ${isActive ? styles.nav_active : ""}`}>
 					<Link href="/" className={styles.nav_link}>
 						Home
 					</Link>
@@ -37,6 +51,7 @@ function Header() {
 						showBalance={false}
 					/>
 				</div>
+			
 			</nav>
 		</header>
 	)
