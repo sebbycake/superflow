@@ -87,7 +87,7 @@ function DashboardTable({children}) {
 
             <tr>
             {loading ? (
-            	<p>loading....</p> 
+            	<p className={styles.loading}>loading....</p> 
 				) : (
                 <tr className={styles.content}>
                     <td className={styles.contentAsset}>USD</td>
@@ -116,7 +116,7 @@ function DashboardTable({children}) {
 
             <tr>
             {loading ? (
-            	<p>loading....</p> 
+            	<p className={styles.loading}>loading....</p> 
 				) : (
                 <tr className={styles.content}>
                     <td className={styles.contentAsset}>USD</td>

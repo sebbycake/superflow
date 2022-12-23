@@ -66,3 +66,20 @@
     margin: 20px;
     
 }
+
+.loading{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    animation-name: pulse;
+    animation-duration: 600ms;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes pulse {
+0% { opacity: 0 }
+100% { opacity: '100%' }
+}
+  
