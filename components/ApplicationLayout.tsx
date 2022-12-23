@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Link from "next/link"
 import styles from "./ApplicationLayout.module.css"
 import {ConnectButton} from '@rainbow-me/rainbowkit';
 
 function ApplicationLayout({isActive, children }) {
 
+	const [isSideBarActive, setIsSidebarActive] = useState(false)
+
 	return (
 		<div>
 			<main className={styles.container_flex}>
+
 				<section className={styles.sidebar_menu}>
-					<div className={styles.sidebar}>
+					<div className={`${styles.sidebar} ${isSideBarActive ? styles.sidebar_active : ""}`}>
 						<Link href="/dashboard" className={styles.logo}>
 							<img src="/logo.png" alt="" className={styles.logo_img} />
 							<div>
@@ -25,7 +28,16 @@ function ApplicationLayout({isActive, children }) {
 						</div>
 					</div>
 				</section>
+
 				<section className={styles.application}>{children}</section>
+
+				<img
+					src="/hamburger_menu.svg"
+					alt="An SVG of hamburger menu"
+					className={`${styles.hidden} ${styles.hamburger}`}
+					onClick={() => setIsSidebarActive(prev => !prev)}
+				/>
+				
 			</main>
 		</div>
 	)

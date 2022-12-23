@@ -17,27 +17,36 @@ import { isMounted } from "../hooks/isMounted"
 
 const Subscription: NextPage = () => {
 	const mounted = isMounted()
-	const [subscriptionName, setSubscriptionName] = useState("")
-	const [monthlyPrice, setMonthlyPrice] = useState("")
-	const [isUSDCAccepted, setUSDC] = useState(false)
-	const [isDAIAccepted, setDAI] = useState(false)
-	const [isUSDTAccepted, setUSDT] = useState(false)
-	const [isRecurring, setIsRecurring] = useState(false)
-	const [isStreamingPayment, setIsStreamingPayment] = useState(false)
+
+	const [subscriptionDetails, setSubscriptionDetails] = useState({
+		subscriptionName: "",
+		monthlyPrices: "",
+		isUSDCAccepted: false,
+		isDAIAccepted: false,
+		isUSDTAccepted: false,
+		isRecurringPayment: false,
+		isStreamingPayment: false
+	})
+
+	const { subscriptionName, monthlyPrices, 
+		isUSDCAccepted, isDAIAccepted, isUSDTAccepted, 
+		isRecurringPayment, isStreamingPayment
+	} = subscriptionDetails
+
 	const { address, isConnected } = useAccount()
 	const { config } = usePrepareContractWrite({ //FACTORY
 		address: "0x9e326385f0DFCEEc61ff255a2616484C257a23CC",
 		abi: abi,
 		functionName: "createSubscription",
 		args: [
-			convertPricesToArray(),
+			convertPricesToArray(monthlyPrices),
 			subscriptionName,
 			address,
 			isUSDCAccepted,
 			isDAIAccepted,
 			isUSDTAccepted,
-			isRecurring,
-			isStreamingPayment,
+			isRecurringPayment,
+			isStreamingPayment
 		],
 	})
 	useContractEvent({ //FACTORY
@@ -59,12 +68,16 @@ const Subscription: NextPage = () => {
 		hash: data?.hash,
 	})
 
-	function handleChange(event, setData) {
-		setData(event.target.value)
+	function handleChange(event) {
+		if (event.target.type === "checkbox") {
+			setSubscriptionDetails(prev => ({...prev, [event.target.name]: !prev[event.target.name]}))
+		} else {
+			setSubscriptionDetails(prev => ({...prev, [event.target.name]: event.target.value}))
+		}
 	}
 
-	function convertPricesToArray() {
-		return monthlyPrice.split(",").map(Number)
+	function convertPricesToArray(monthlyPrices) {
+		return monthlyPrices.split(",").map(Number)
 	}
 
 	function handleSubmit(event) {
@@ -106,9 +119,10 @@ const Subscription: NextPage = () => {
 								Subscription name:
 								<input
 									type="text"
+									name="subscriptionName"
 									placeholder="e.g. SuperFlow subscription"
 									value={subscriptionName}
-									onChange={() => handleChange(event, setSubscriptionName)}
+									onChange={handleChange}
 									className={styles.text_input}
 									required
 								/>
@@ -118,9 +132,10 @@ const Subscription: NextPage = () => {
 								<small>Separate by "," for multiple prices</small>
 								<input
 									type="text"
+									name="monthlyPrices"
 									placeholder="e.g. 7, 10, 15"
-									value={monthlyPrice}
-									onChange={() => handleChange(event, setMonthlyPrice)}
+									value={monthlyPrices}
+									onChange={handleChange}
 									className={styles.text_input}
 									required
 								/>
@@ -131,9 +146,9 @@ const Subscription: NextPage = () => {
 								<label className = {styles.switch}>
 									<input									
 										type="checkbox"
-										name="recurring"
+										name="isUSDCAccepted"
 										value="true"
-										onChange={() => handleChange(event, setUSDC)}
+										onChange={handleChange}
 									/>
 									<span className={styles.slider}></span>
 								</label>
@@ -141,9 +156,9 @@ const Subscription: NextPage = () => {
 								<label className = {styles.switch}>
 									<input									
 										type="checkbox"
-										name="recurring"
+										name="isDAIAccepted"
 										value="true"
-										onChange={() => handleChange(event, setDAI)}
+										onChange={handleChange}
 									/>
 									<span className={styles.slider}></span>
 								</label>
@@ -151,9 +166,9 @@ const Subscription: NextPage = () => {
 								<label className = {styles.switch}>
 									<input									
 										type="checkbox"
-										name="recurring"
+										name="isUSDTAccepted"
 										value="true"
-										onChange={() => handleChange(event, setUSDT)}
+										onChange={handleChange}
 									/>
 									<span className={styles.slider}></span>
 								</label>
@@ -164,9 +179,9 @@ const Subscription: NextPage = () => {
 								<label className = {styles.switch}>
 									<input									
 										type="checkbox"
-										name="recurring"
+										name="isRecurringPayment"
 										value="true"
-										onChange={() => handleChange(event, setIsRecurring)}
+										onChange={handleChange}
 									/>
 									<span className={styles.slider}></span>
 								</label>
@@ -175,9 +190,9 @@ const Subscription: NextPage = () => {
 								<label className = {styles.switch}>
 									<input									
 										type="checkbox"
-										name="recurring"
+										name="isStreamingPayment"
 										value="true"
-										onChange={() => handleChange(event, setIsStreamingPayment)}
+										onChange={handleChange}
 									/>
 									<span className={styles.slider}></span>
 								</label>
