@@ -9,6 +9,7 @@ import {
 import { subscriptionAbi } from "../utils/subscriptionAbi"
 import { abi } from "../utils/FactoryAbi"
 import styles from "./DashboardTable.module.css"
+import LoadingSpinner from './LoadingSpinner'
 
 function DashboardTables({ children }) {
 	const [contractaddresses, setContractAddresses] = useState([])
@@ -75,7 +76,8 @@ function DashboardTables({ children }) {
 
 	return (
 		loading	? ( 
-			<p className={styles.loading}>Loading data...</p>
+			// <p className={styles.loading}>Loading data...</p>
+			<LoadingSpinner />
 		) : (
 			contractaddresses.length == 0 
 		) ? (
