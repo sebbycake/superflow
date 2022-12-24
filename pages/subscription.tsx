@@ -212,7 +212,9 @@ const Subscription: NextPage = () => {
 											{!isLoading && !isSuccess && "Deploy subscription!"}
 										</button>
 									) : (
-										<ConnectButton />
+										<div className={styles.connectButton}>
+										<ConnectButton/>
+										</div>
 									)
 								) : null}
 							</div>

@@ -9,6 +9,7 @@ import {
 import { subscriptionAbi } from "../utils/subscriptionAbi"
 import { abi } from "../utils/FactoryAbi"
 import styles from "./DashboardTable.module.css"
+import { ConnectButton } from "@rainbow-me/rainbowkit"
 
 function DashboardTables({ children }) {
 	const [contractaddresses, setContractAddresses] = useState([])
@@ -74,7 +75,13 @@ function DashboardTables({ children }) {
 	))
 
 	return (
-		loading	? ( 
+		!isConnected ? (
+			<div className={styles.connectButton}>
+				<ConnectButton/>
+			</div>
+		) : (
+			loading	
+		) ? ( 
 			<p className={styles.loading}>Loading data...</p>
 		) : (
 			contractaddresses.length == 0 
