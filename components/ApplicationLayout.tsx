@@ -25,6 +25,7 @@ function ApplicationLayout({isActive, children }) {
 						<div className="nav_items">
 								<Link href="/dashboard" className={`${styles.nav_item} ${isActive[0] && styles.nav_active}`}>Dashboard</Link>
 								<Link href="/subscription" className={`${styles.nav_item} ${isActive[1] && styles.nav_active}`}>Create Subscription</Link>
+								<Link href="/demo" className={`${styles.nav_item} ${isActive[2] && styles.nav_active}`}>Demo</Link>
 						</div>
 					</div>
 				</section>

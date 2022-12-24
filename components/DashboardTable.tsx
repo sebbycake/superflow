@@ -23,7 +23,7 @@ function DashboardTable({dataList, contractAddress}) {
                     <td className={styles.contentBalance}>{dataList[0] && dataList[0].toFixed(5)}</td>
                     <td className={styles.content_text}>{dataList[1] && dataList[1]}</td>
                     <td className={styles.content_text}>{dataList[2] && dataList[2]}</td>
-                    <td className={styles.content_text}>{dataList[3] && dataList[3].toFixed(5)}</td>
+                    <td className={styles.content_text} style={{color:"green"}}>+{dataList[3] && dataList[3].toFixed(5)}</td>
                 </tr>
 			</tr>
 		</table>

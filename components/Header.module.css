@@ -23,11 +23,15 @@
 	width: 45%;
 	display: flex;
 	align-items: center;
+	margin-left: 4rem;
 }
 
+.logotxt{
+	margin-left: 2rem;
+}
 .logo_img {
 	min-width: 50px;
-	max-width: 11%;
+	max-width: 12%;
 }
 
 .logo_title {

@@ -3,17 +3,13 @@ import Head from "next/head"
 import React, { useState } from "react"
 import Link from "next/link"
 import ApplicationLayout from "../components/ApplicationLayout"
+import DemoContent from "../components/DemoContent"
 import DashboardTables from "../components/DashboardTables"
-import styles from "../styles/Dashboard.module.css"
-import { isMounted } from "../hooks/isMounted"
-import {
-	useContractRead,
-	useContractReads,
-	useAccount,
-	useWaitForTransaction,
-} from "wagmi"
 
-const Dashboard: NextPage = () => {
+import styles from "../styles/Demo.module.css"
+import { isMounted } from "../hooks/isMounted"
+
+const Demo: NextPage = () => {
 	const mounted = isMounted()
 
 	return (
@@ -22,15 +18,15 @@ const Dashboard: NextPage = () => {
 				<title>Dashboard | SuperFlow</title>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<ApplicationLayout isActive={[1,0,0]}>
+			<ApplicationLayout isActive={[0,0,1]}>
 				<main className={styles.container}>
 					<div className={styles.contents}>
 						<div className={styles.headerTag}>
-							<h2 className={styles.headerTagTxt}>Deployed Contracts:</h2>
+							<h2 className={styles.headerTagTxt}>Demo:</h2>
 						</div>
 						<div>
 							{mounted ? (
-								<DashboardTables/>
+								<DemoContent/>
 								): null
 							}						
 						</div>
@@ -42,4 +38,4 @@ const Dashboard: NextPage = () => {
 	)
 }
 
-export default Dashboard
+export default Demo

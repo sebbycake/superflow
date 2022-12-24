@@ -104,7 +104,7 @@ const Subscription: NextPage = () => {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 
-			<ApplicationLayout isActive={[0, 1]}>
+			<ApplicationLayout isActive={[0,1,0]}>
 				<main className={`${styles.scene}`}>
 					<div id = "card" className={`${styles.card} ${txSuccess && styles.is_flipped}`}>
 						<form

@@ -10,16 +10,15 @@ function Header() {
 	return (
 		<header className={styles.header}>
 			<nav className={`${styles.container} ${styles.container_flex}`}>
-
-				<div className={styles.logo}>
+				<Link href="/"className={styles.logo} >
 					<img src="/logo.png" alt="" className={styles.logo_img} />
-					<div>
+					<div className={styles.logotxt}>
 						<h2 className={styles.logo_title}>SuperFlow</h2>
 						<p className={styles.logo_description}>
 							Easy. Elaborate. Efficient
 						</p>
 					</div>
-				</div>
+				</Link>
 
 				{/* Hamburger menu for mobile view  */}
 				<img

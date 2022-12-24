@@ -1,0 +1,28 @@
+.container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+  
+.contents {
+    margin-left: 8%;
+}
+
+.headerTag {
+    background-color: #f0f9f0;
+    color: #1ebd3c;
+    height: 3rem;
+    width: 10rem;
+    border-radius: 7px;
+    text-align: center;
+    vertical-align: middle;  
+    margin-top: 3.5rem;
+    font-size: 108%;
+    margin-bottom: 4rem;
+}
+  
+.headerTagTxt{
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
